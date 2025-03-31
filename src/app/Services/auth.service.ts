@@ -9,6 +9,13 @@ export class AuthService {
   getUserDetails() {
     throw new Error('Method not implemented.');
   }
+  getCustomerId(): number {
+    return Number(localStorage.getItem('customerId')) || 0;
+  }
+
+  getCustomerName(): string {
+    return localStorage.getItem('customerName') || 'Guest';
+  }
 
   private apiUrl = 'http://localhost:8080/customers'; // ✅ Backend API URL
 
