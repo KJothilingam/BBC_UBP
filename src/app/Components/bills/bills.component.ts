@@ -4,11 +4,12 @@ import { AuthService } from '../../Services/auth.service';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-bills',
   standalone: true, // Add this if using standalone components
-  imports: [CommonModule, SidebarComponent,FormsModule], // Import CommonModule for ngClass
+  imports: [RouterLink,CommonModule, SidebarComponent,FormsModule], // Import CommonModule for ngClass
   templateUrl: './bills.component.html',
   styleUrl: './bills.component.css'
 })

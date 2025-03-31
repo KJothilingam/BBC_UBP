@@ -8,7 +8,12 @@
     max-width: 86%;
     overflow: hidden;
 }
-
+.top-right-btn {
+    position: absolute;
+    top: 5vh;
+    right: 25vh;
+  }
+  
 /* Header Section */
 .header {
     display: flex;

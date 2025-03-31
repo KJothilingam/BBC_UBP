@@ -9,6 +9,10 @@
         <span class="branch">Lalitpur Branch</span>
       </div>
     </div>
+
+    <div style="position: relative; width: 100%;">
+        <button type="button" class="btn btn-primary top-right-btn" [routerLink]="['/payment']" routerLinkActive="router-link-active" >Pay Bills </button>
+      </div>
   <div class="bill-container">
     <h3 class="bill-title">Invoice Details - {{ customerName }} (ID: {{ customerId }})</h3>
 
