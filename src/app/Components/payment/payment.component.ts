@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 // import { PaymentRequest } from './../../Interfaces/payment.model';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from "../sidebar/sidebar.component";
+import { PaymentRequest } from '../../Interface/payment.model';
 
 // 🔹 Import Angular Material Modules
 import { MatCardModule } from '@angular/material/card';

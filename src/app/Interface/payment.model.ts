@@ -1,17 +1,25 @@
+// payment.model.ts
 export interface PaymentRequest {
     billId: number;
     amount: number;
     paymentMethod: string;
+    meterNumber: string;
   }
   
   export interface PaymentResponse {
-    transactionId: number;
-    bill: any;
-    customer: any;
+    success: boolean;
+    message: string;
+    invoiceId: string;
+    meterNumber: string;
+    unitConsumed: number;
+    dueDate: number;
+    totalBillAmount: number;
     amountPaid: number;
-    paymentDate: number;
-    transactionStatus: string;
-    paymentStatus: string;
+    discountApplied: number;
+    finalAmountPaid: number;
     paymentMethod: string;
+    paymentDate: number;
+    billingMonth: string;
+    transactionId: string;
   }
   
