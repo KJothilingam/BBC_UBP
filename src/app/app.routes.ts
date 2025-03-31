@@ -14,4 +14,9 @@ export const routes: Routes = [
         path:'report',
         loadComponent :()=>import('./Components/reports/reports.component').then((c)=> c.ReportsComponent),
     },
+    {
+        path:'bills',
+        loadComponent :()=>import('./Components/bills/bills.component').then((c)=> c.BillsComponent),
+    },
+   
 ];

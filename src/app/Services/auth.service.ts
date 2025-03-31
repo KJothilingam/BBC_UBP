@@ -6,8 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  getUserDetails() {
+    throw new Error('Method not implemented.');
+  }
 
-  private apiUrl = 'http://localhost:8080/employees'; // ✅ Backend API URL
+  private apiUrl = 'http://localhost:8080/customers'; // ✅ Backend API URL
 
   constructor(private http: HttpClient) {}
 

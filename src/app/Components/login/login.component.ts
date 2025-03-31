@@ -4,9 +4,11 @@ import { AuthService } from '../../Services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-login',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -17,8 +19,13 @@ export class LoginComponent {
   storedOtp: string = "";
 
   @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef>;
-  
-  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+
+  constructor(
+    private sanitizer: DomSanitizer,
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   moveNext(event: any, index: number): void {
     const inputValue = event.target.value;
@@ -36,42 +43,40 @@ export class LoginComponent {
       }
     }
   }
+
   autoFillOtp(otp: string) {
-    const otpArray = otp.split(''); // Convert OTP string into array of digits
-    const inputs = this.otpInputs.toArray(); // Get all input fields
-    
+    const otpArray = otp.split('');
+    const inputs = this.otpInputs.toArray();
+
     otpArray.forEach((digit, index) => {
       if (inputs[index]) {
-        inputs[index].nativeElement.value = digit; // Auto-fill input box
+        inputs[index].nativeElement.value = digit;
       }
     });
-  
-    // Move focus to the last OTP box after auto-fill
+
     if (inputs.length > 0) {
       inputs[inputs.length - 1].nativeElement.focus();
     }
   }
-  
 
   generateOtp() {
     if (!this.email) {
       this.toastr.warning("⚠️ Please enter your email", "Warning!", { timeOut: 10000 });
       return;
     }
-  
+
     this.authService.generateOtp(this.email).subscribe(
       response => {
         if (response.otp) {
-          this.storedOtp = response.otp; // Store OTP for auto-fill
-  
-          this.toastr.success(
-            `✅ OTP Sent Successfully! <br><strong style="font-size: 18px;">Your OTP: ${response.otp}</strong>`, 
-            "Success!", 
-            { timeOut: 10000, enableHtml: true }
+          this.storedOtp = response.otp;
+
+          const sanitizedMessage: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(
+            `✅ OTP Sent Successfully! <br><strong style="font-size: 18px;">Your OTP: ${response.otp}</strong>`
           );
-  
-          // Auto-fill OTP in input boxes
-          setTimeout(() => this.autoFillOtp(response.otp), 500); 
+
+          this.toastr.success(sanitizedMessage as string, "Success!", { timeOut: 10000, enableHtml: true });
+
+          setTimeout(() => this.autoFillOtp(response.otp), 500);
         } else {
           this.toastr.success("✅ OTP Sent Successfully!", "Success!", { timeOut: 10000 });
         }
@@ -82,47 +87,45 @@ export class LoginComponent {
       }
     );
   }
-  
-  
+
   verifyOtp() {
     const enteredOtp = this.otpInputs.map(input => input.nativeElement.value).join('');
-  
+
     if (enteredOtp.length !== 6) {
       this.toastr.warning("⚠️ Enter complete 6-digit OTP", "Warning!", { timeOut: 10000 });
       return;
     }
-  
+
     this.authService.verifyOtp(this.email, enteredOtp).subscribe(
       response => {
-        if (response.userId && response.userName) {
-          // ✅ Store user details in localStorage
-          localStorage.setItem('userId', response.userId);
-          localStorage.setItem('userName', response.userName);
-          
-          this.toastr.success(
-            `✅ OTP Verified!<br><strong>Welcome, ${response.userName}!</strong>`,
-            "Success!",
-            { timeOut: 20000, enableHtml: true }
+        console.log("Server Response:", response);
+
+        if (response?.customerId && response?.customerName) {
+          localStorage.setItem('customerId', response.customerId.toString());
+          localStorage.setItem('customerName', response.customerName);
+
+          const sanitizedMessage: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(
+            `✅ OTP Verified!<br><strong>Welcome, ${response.customerName}!</strong>`
           );
-  
-          // ✅ Log User Details
+
+          this.toastr.success(sanitizedMessage as string, "Success!", { timeOut: 20000, enableHtml: true });
+
           this.getUserDetails();
-  
           this.router.navigate(['/dashboard']);
         } else {
           this.toastr.error("❌ Invalid Response from Server", "Error!", { timeOut: 10000 });
         }
       },
       error => {
-        this.toastr.error(error.error.message || "❌ Invalid OTP", "Error!", { timeOut: 10000 });
+        this.toastr.error(error.error?.message || "❌ Invalid OTP", "Error!", { timeOut: 10000 });
       }
     );
   }
-  
+
   getUserDetails() {
-    const userId = localStorage.getItem('userId');
-    const userName = localStorage.getItem('userName');
-  
-    console.log(`Logged in User: ${userName} (ID: ${userId})`);
+    const customerId = localStorage.getItem('customerId');
+    const customerName = localStorage.getItem('customerName');
+
+    console.log(`Logged in Customer: ${customerName} (ID: ${customerId})`);
   }
-}  
+}
