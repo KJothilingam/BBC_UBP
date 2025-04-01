@@ -1,141 +1,126 @@
-.dashboard-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    width: 85%;
-    margin-left: 15%;
-    background-color: #f8f9fa;
-  }
-  
-  /* Top Section */
-  .top-section {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .card {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .banking-card {
-    width: 50%;
-  }
-  
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .switch {
-    position: relative;
-    width: 34px;
-    height: 20px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 20px;
-  }
-  
-  .switch input:checked + .slider {
-    background-color: #4fd1c5;
-  }
-  
-  .card-number {
-    font-size: 20px;
-    margin-top: 10px;
-  }
-  
-  .card-balance {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .small-card {
-    width: 20%;
-    text-align: center;
-  }
-  
-  .card-icon {
-    font-size: 30px;
-  }
-  
-  /* Payment Method */
-  .payment-method {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .add-card-btn {
-    background-color: #4fd1c5;
-    border: none;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  /* Billing & Transactions */
-  .info-section {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .billing-info, .transactions {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    width: 50%;
-  }
-  
-  .billing-item {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-  }
-  
-  .edit-btn {
-    background-color: #f56565;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  
-  .transactions ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .transactions li {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-  }
-  
-  .expense {
-    color: red;
-  }
-  
-  .income {
-    color: green;
-  }
-  
+.reports-container {
+  margin-left: 15%;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+/* Stats Section */
+.stats-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  width: 22%;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+/* Reports Section */
+.main-reports {
+  display: flex;
+  gap: 20px;
+}
+
+.left, .right {
+  width: 50%;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.projects, .orders {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f1f1f1;
+}
+
+td, th {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.orders ul {
+  list-style: none;
+  padding: 0;
+}
+
+.orders li {
+  padding: 10px 0;
+}
+
+/* Billing & Transactions */
+.info-section {
+  display: flex;
+  gap: 20px;
+}
+
+.billing-info, .transactions {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  width: 50%;
+}
+
+.billing-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.edit-btn {
+  background-color: #f56565;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.transactions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.transactions li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.expense {
+  color: red;
+}
+
+.income {
+  color: green;
+}
