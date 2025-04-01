@@ -16,7 +16,8 @@ export class PaymentHistoryComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:8080/payment-records').subscribe(data => {
+    const customerId = this.getCustomerId(); // Get the logged-in user's customer ID
+    this.http.get<any[]>(`http://localhost:8080/payment-records/customer?customerId=${customerId}`).subscribe(data => {
       this.payments = data.map(payment => ({
         ...payment,
         transactionId: payment.transactionId, // Ensure Transaction ID is used
@@ -25,6 +26,8 @@ export class PaymentHistoryComponent implements OnInit {
       }));
     });
   }
+  
+  
 
   private convertToDate(dateValue: any): string {
     if (!dateValue) return 'N/A'; 
@@ -39,5 +42,10 @@ export class PaymentHistoryComponent implements OnInit {
     }
 
     return formatDate(dateObj, 'dd.MMM.yyyy', 'en-US');
+  }
+
+  
+  private getCustomerId(): number {
+    return Number(localStorage.getItem('customerId')) || 0; // Retrieve customer ID from localStorage
   }
 }
