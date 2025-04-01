@@ -23,6 +23,7 @@ import html2canvas from 'html2canvas';
 import { AuthService } from '../../Services/auth.service';
 import { PaymentService } from '../../Services/payment.service';
 import { BillService } from '../../Services/bill.service';
+import { PaymentHistoryComponent } from "../payment-history/payment-history.component";
 
 @Component({
   selector: 'app-payment',
@@ -40,7 +41,8 @@ import { BillService } from '../../Services/bill.service';
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    MatButtonModule
+    MatButtonModule,
+    PaymentHistoryComponent
 ]
 })
 export class PaymentComponent {

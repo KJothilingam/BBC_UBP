@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { PaymentHistoryComponent } from "../payment-history/payment-history.component";
 
 @Component({
   selector: 'app-bills',
   standalone: true, // Add this if using standalone components
-  imports: [RouterLink,CommonModule, SidebarComponent,FormsModule], // Import CommonModule for ngClass
+  imports: [RouterLink, CommonModule, SidebarComponent, FormsModule, PaymentHistoryComponent], // Import CommonModule for ngClass
   templateUrl: './bills.component.html',
   styleUrl: './bills.component.css'
 })
