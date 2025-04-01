@@ -1,21 +1,25 @@
-<h2 mat-dialog-title>Add Money to {{ data.paymentMethod }}</h2>
-<div mat-dialog-content>
-  <form [formGroup]="addMoneyForm" (ngSubmit)="submit()">
-    
-    <div *ngIf="!showAmountInput">
-      <label>Enter Passkey:</label>
-      <input type="password" formControlName="passkey" />
-      <button type="button" (click)="verifyPasskey()">Verify</button>
-    </div>
-    
-    <div *ngIf="showAmountInput">
-      <label>Enter Amount:</label>
-      <input type="number" formControlName="amount" />
-      <button type="submit">Add Money</button>
-    </div>
+<h2 mat-dialog-title class="title">Add Money to {{ data.paymentMethod }}</h2>
 
+<div mat-dialog-content class="content">
+  <form [formGroup]="addMoneyForm" (ngSubmit)="submit()" class="form-container">
+    
+    <!-- Passkey Input Section -->
+    <div *ngIf="!showAmountInput" class="input-section">
+      <label class="label">Enter Passkey:</label>
+      <input type="password" formControlName="passkey" class="input-field" />
+      <button type="button" class="verify-btn" (click)="verifyPasskey()">Verify</button>
+    </div>
+    
+    <!-- Amount Input Section -->
+    <div *ngIf="showAmountInput" class="input-section">
+      <label class="label">Enter Amount:</label>
+      <input type="number" formControlName="amount" class="input-field" />
+      <button type="submit" class="submit-btn">Add Money</button>
+    </div>
   </form>
 </div>
-<div mat-dialog-actions>
-  <button (click)="closeDialog()">Cancel</button>
+
+<!-- Dialog Actions -->
+<div mat-dialog-actions class="actions">
+  <button class="cancel-btn" (click)="closeDialog()">Cancel</button>
 </div>
