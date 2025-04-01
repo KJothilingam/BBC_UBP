@@ -10,7 +10,7 @@ import { PaymentHistoryComponent } from "../payment-history/payment-history.comp
 @Component({
   selector: 'app-bills',
   standalone: true, // Add this if using standalone components
-  imports: [RouterLink, CommonModule, SidebarComponent, FormsModule, PaymentHistoryComponent], // Import CommonModule for ngClass
+  imports: [RouterLink, CommonModule, SidebarComponent, FormsModule], // Import CommonModule for ngClass
   templateUrl: './bills.component.html',
   styleUrl: './bills.component.css'
 })

@@ -1,8 +1,27 @@
 <app-sidebar></app-sidebar>
 
 <div class="reports-container">
+  <!-- Passkey Modal -->
+<!-- <div class="modal" *ngIf="showPasskeyModal">
+  <div class="modal-content">
+    <h3>Enter Passkey</h3>
+    <input type="password" [(ngModel)]="enteredPasskey" placeholder="Enter Passkey" />
+    <button (click)="verifyPasskey()">Submit</button>
+    <button (click)="closeModals()">Cancel</button>
+  </div>
+</div> -->
+
+<!-- Amount Modal -->
+<!-- <div class="modal" *ngIf="showAmountModal">
+  <div class="modal-content">
+    <h3>Enter Amount</h3>
+    <input type="number" [(ngModel)]="amountToAdd" placeholder="Enter Amount" />
+    <button (click)="addMoney()">Add</button>
+    <button (click)="closeModals()">Cancel</button>
+  </div>
+</div> -->
   <!-- Top Stats Section -->
-  <div class="stats-section">
+  <!-- <div class="stats-section">
     <div class="stats-card">
       <p>CREDIT CARD</p>
       <h2>{{ creditCardBalance | currency:'INR' }}</h2>
@@ -19,8 +38,34 @@
       <p>WALLET</p>
       <h2>{{ walletBalance | currency:'INR' }}</h2>
     </div>
+  </div> -->
+  <div class="stats-section">
+    <div class="stats-card">
+      <p>CREDIT CARD</p>
+      <h2>{{ creditCardBalance | currency:'INR' }}</h2>
+      <button (click)="openAddMoneyDialog('creditCard')">Add Money</button>
+    </div>
+    
+    <div class="stats-card">
+      <p>DEBIT CARD</p>
+      <h2>{{ debitCardBalance | currency:'INR' }}</h2>
+      <button (click)="openAddMoneyDialog('debitCard')">Add Money</button>
+    </div>
+  
+    <div class="stats-card">
+      <p>UPI</p>
+      <h2>{{ upiBalance | currency:'INR' }}</h2>
+      <button (click)="openAddMoneyDialog('upi')">Add Money</button>
+    </div>
+  
+    <div class="stats-card">
+      <p>WALLET</p>
+      <h2>{{ walletBalance | currency:'INR' }}</h2>
+      <button (click)="openAddMoneyDialog('wallet')">Add Money</button>
+    </div>
   </div>
-
+  
+  
   <!-- Main Reports Section -->
   <div class="main-reports">
     <div class="left">

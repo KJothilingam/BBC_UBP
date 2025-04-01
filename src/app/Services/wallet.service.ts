@@ -20,4 +20,7 @@ export class WalletService {
   getWalletBalance(customerId: number): Observable<Wallet> {
     return this.http.get<Wallet>(`${this.baseUrl}/${customerId}`);
   }
+  addMoney(customerId: number, amount: number, paymentMethod: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/add-money`, { customerId, amount, paymentMethod });
+  }
 }

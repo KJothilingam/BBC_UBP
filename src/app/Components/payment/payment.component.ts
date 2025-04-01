@@ -41,8 +41,7 @@ import { PaymentHistoryComponent } from "../payment-history/payment-history.comp
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    MatButtonModule,
-    PaymentHistoryComponent
+    MatButtonModule
 ]
 })
 export class PaymentComponent {
