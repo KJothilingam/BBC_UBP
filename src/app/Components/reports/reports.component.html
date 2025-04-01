@@ -1,72 +1,72 @@
 <app-sidebar></app-sidebar>
+
 <div class="reports-container">
-    <!-- Top Stats Section -->
-    <div class="stats-section">
-      <div class="stats-card">
-        <p>Today's Money</p>
-        <h2>$53,000 <span class="green">+55%</span></h2>
+  <!-- Top Stats Section -->
+  <div class="stats-section">
+    <div class="stats-card">
+      <p>CREDIT CARD</p>
+      <h2>{{ creditCardBalance | currency:'INR' }}</h2>
+    </div>
+    <div class="stats-card">
+      <p>DEBIT CARD</p>
+      <h2>{{ debitCardBalance | currency:'INR' }}</h2>
+    </div>
+    <div class="stats-card">
+      <p>UPI</p>
+      <h2>{{ upiBalance | currency:'INR' }}</h2>
+    </div>
+    <div class="stats-card">
+      <p>WALLET</p>
+      <h2>{{ walletBalance | currency:'INR' }}</h2>
+    </div>
+  </div>
+
+  <!-- Main Reports Section -->
+  <div class="main-reports">
+    <div class="left">
+      <div class="chart-card">
+        <h3>Active Users</h3>
+        <canvas id="barChart"></canvas>
       </div>
-      <div class="stats-card">
-        <p>Today's Users</p>
-        <h2>2,300 <span class="green">+3%</span></h2>
-      </div>
-      <div class="stats-card">
-        <p>New Clients</p>
-        <h2>+3,052 <span class="red">-14%</span></h2>
-      </div>
-      <div class="stats-card">
-        <p>Total Sales</p>
-        <h2>$173,000 <span class="green">+8%</span></h2>
+      <div class="projects">
+        <h3>Projects</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Budget</th>
+              <th>Completion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Chakra Soft UI</td>
+              <td>{{ 14000 | currency:'INR' }}</td>
+              <td>90%</td>
+            </tr>
+            <tr>
+              <td>Add Progress Track</td>
+              <td>{{ 3000 | currency:'INR' }}</td>
+              <td>10%</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  
-    <!-- Main Reports Section -->
-    <div class="main-reports">
-      <div class="left">
-        <div class="chart-card">
-          <h3>Active Users</h3>
-          <canvas id="barChart"></canvas>
-        </div>
-        <div class="projects">
-          <h3>Projects</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Project</th>
-                <th>Budget</th>
-                <th>Completion</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Chakra Soft UI</td>
-                <td>$14,000</td>
-                <td>90%</td>
-              </tr>
-              <tr>
-                <td>Add Progress Track</td>
-                <td>$3,000</td>
-                <td>10%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+
+    <div class="right">
+      <div class="chart-card">
+        <h3>Sales Overview</h3>
+        <canvas id="lineChart"></canvas>
       </div>
-  
-      <div class="right">
-        <div class="chart-card">
-          <h3>Sales Overview</h3>
-          <canvas id="lineChart"></canvas>
-        </div>
-        <div class="orders">
-          <h3>Orders Overview</h3>
-          <ul>
-            <li><span class="green">+35%</span> $290, Design changes</li>
-            <li>New Order #18423</li>
-            <li>Server Payments for April</li>
-          </ul>
-        </div>
+      <div class="orders">
+        <h3>Orders Overview</h3>
+        <ul>
+          <li><span class="green">+35%</span> {{ 290 | currency:'INR' }}, Design changes</li>
+          <li>New Order #18423</li>
+          <li>Server Payments for April</li>
+        </ul>
       </div>
     </div>
   </div>
-  
+</div>

@@ -1,6 +1,9 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { WalletService } from '../../Services/wallet.service';
+import { AuthService } from '../../Services/auth.service';
 import { SidebarComponent } from "../sidebar/sidebar.component";
+import { CommonModule } from '@angular/common';
 
 Chart.register(...registerables);
 
@@ -8,9 +11,33 @@ Chart.register(...registerables);
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.css'],
-  imports: [SidebarComponent]
+  imports: [CommonModule,SidebarComponent]
 })
-export class ReportsComponent implements AfterViewInit {
+export class ReportsComponent implements OnInit, AfterViewInit {
+  creditCardBalance: number = 0;
+  debitCardBalance: number = 0;
+  upiBalance: number = 0;
+  walletBalance: number = 0;
+
+  constructor(private walletService: WalletService, private authService: AuthService) {}
+
+  ngOnInit() {
+    const customerId = this.authService.getCustomerId();
+    if (customerId) {
+      this.walletService.getWalletBalance(customerId).subscribe(
+        (wallet) => {
+          this.creditCardBalance = wallet.creditCardBalance;
+          this.debitCardBalance = wallet.debitCardBalance;
+          this.upiBalance = wallet.upiBalance;
+          this.walletBalance = wallet.walletBalance;
+        },
+        (error) => {
+          console.error('Error fetching wallet balance:', error);
+        }
+      );
+    }
+  }
+
   ngAfterViewInit() {
     new Chart("barChart", {
       type: 'bar',
