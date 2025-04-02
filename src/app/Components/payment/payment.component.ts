@@ -138,28 +138,67 @@ export class PaymentComponent {
   }
 
   // 🔹 Process payment
+  // processPayment() {
+  //   if (this.paymentForm.invalid) {
+  //     this.toastr.error('Please fill in all required fields.', 'Error', this.getToastrConfig());
+  //     return;
+  //   }
+
+  //   this.isProcessing = true;
+  //   this.paymentForm.disable();
+
+  //   const paymentData: PaymentRequest = this.paymentForm.getRawValue();
+
+  //   this.paymentService.processPayment(paymentData).subscribe({
+  //     next: (response) => {
+  //       this.paymentData = {
+  //         ...response, // ✅ Keep payment response
+  //         customerName: this.paymentData.customerName ?? 'N/A',
+  //         customerEmail: this.paymentData.customerEmail ?? 'N/A'
+  //       };
+
+  //       this.toastr.success('Payment Successful!', 'Success', this.getToastrConfig());
+  //       this.generatePDFReceipt();
+  //       this.resetForm();
+  //     },
+  //     error: () => {
+  //       this.toastr.error('Payment Failed! Try again.', 'Error', this.getToastrConfig());
+  //       this.isProcessing = false;
+  //       this.paymentForm.enable();
+  //     }
+  //   });
+  // }
+
   processPayment() {
     if (this.paymentForm.invalid) {
       this.toastr.error('Please fill in all required fields.', 'Error', this.getToastrConfig());
       return;
     }
-
+  
     this.isProcessing = true;
     this.paymentForm.disable();
-
+  
     const paymentData: PaymentRequest = this.paymentForm.getRawValue();
-
+  
     this.paymentService.processPayment(paymentData).subscribe({
       next: (response) => {
-        this.paymentData = {
-          ...response, // ✅ Keep payment response
-          customerName: this.paymentData.customerName ?? 'N/A',
-          customerEmail: this.paymentData.customerEmail ?? 'N/A'
-        };
-
-        this.toastr.success('Payment Successful!', 'Success', this.getToastrConfig());
-        this.generatePDFReceipt();
-        this.resetForm();
+        if (response.success) {
+          // ✅ Only update the UI and generate the PDF if the payment was successful
+          this.paymentData = {
+            ...response,
+            customerName: this.paymentData.customerName ?? 'N/A',
+            customerEmail: this.paymentData.customerEmail ?? 'N/A'
+          };
+  
+          this.toastr.success('Payment Successful!', 'Success', this.getToastrConfig());
+          this.generatePDFReceipt(); // ✅ Generate PDF only if success
+          this.resetForm();
+        } else {
+          // 🛑 Handle failed payment properly
+          this.toastr.error(response.message || 'Payment Failed! Try again.', 'Error', this.getToastrConfig());
+          this.isProcessing = false;
+          this.paymentForm.enable();
+        }
       },
       error: () => {
         this.toastr.error('Payment Failed! Try again.', 'Error', this.getToastrConfig());
@@ -168,6 +207,7 @@ export class PaymentComponent {
       }
     });
   }
+  
 
   // 🔹 Reset form after payment
   private resetForm() {
