@@ -24,4 +24,9 @@ export const routes: Routes = [
         loadComponent :()=>import('./Components/payment-history/payment-history.component').then((c)=> c.PaymentHistoryComponent),
     },
    
+    {
+        path:'profile',
+        loadComponent :()=>import('./Components/profile/profile.component').then((c)=> c.ProfileComponent),
+    },
+   
 ];

@@ -78,28 +78,6 @@ export class PaymentComponent {
     this.showModal = false;
   }
 
-  // 🔹 Fetch unpaid bills
-  // fetchBills() {
-  //   const meterNumber = this.paymentForm.get('meterNumber')?.value.trim();
-
-  //   if (!meterNumber) {
-  //     this.toastr.warning('Please enter a meter number.', 'Warning', this.getToastrConfig());
-  //     return;
-  //   }
-  //   this.billService.getUnpaidBillsByMeter(meterNumber).subscribe({
-  //     next: (data) => {
-  //       this.bills = data;
-  //       if (data.length === 0) {
-  //         this.toastr.info('No due bills.', 'Info');
-  //       }
-  //     },
-  //     error: (err) => {
-  //       console.error('API Error:', err);
-  //     }
-  //   });
-  // }
-  // 🔹 Fetch unpaid bills
-// 🔹 Fetch unpaid bills
 // 🔹 Fetch unpaid bills
   fetchBills() {
     const meterNumber = this.paymentForm.get('meterNumber')?.value?.trim();

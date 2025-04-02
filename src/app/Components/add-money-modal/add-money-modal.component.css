@@ -2,8 +2,9 @@
     text-align: center;
     font-size: 1.6rem;
     font-weight: bold;
-    color: #673ab7;
-    margin-bottom: 10px;
+    color: #4318FF; 
+    margin-bottom: 2px;
+    padding: 20px;
   }
 
   .content {
@@ -18,6 +19,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* padding: 10px; */
   }
 
   .input-section {
@@ -55,7 +57,7 @@
     font-size: 1rem;
     font-weight: bold;
     color: #fff;
-    background: linear-gradient(135deg, #7e57c2, #512da8);
+    background: linear-gradient(135deg,  #4318FF, #512da8);
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -63,7 +65,7 @@
   }
 
   .verify-btn:hover, .submit-btn:hover {
-    background: linear-gradient(135deg, #512da8, #311b92);
+    background: linear-gradient(135deg,  #4318FF, #512da8);
   }
 
   .cancel-btn {
