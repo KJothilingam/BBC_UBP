@@ -6,18 +6,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  getUserDetails() {
-    throw new Error('Method not implemented.');
-  }
-  getCustomerId(): number {
+  private apiUrl = 'http://localhost:8080/customers'; // ✅ Backend API URL
+
+   getCustomerId(): number {
     return Number(localStorage.getItem('customerId')) || 0;
   }
+
+  getCustomerDetails(): Observable<any> {
+    const customerId = this.getCustomerId();
+    if (customerId) {
+      return this.http.get(`${this.apiUrl}/${customerId}`);
+    }
+    throw new Error('Customer ID not found in local storage.');
+  }
+
+  
 
   getCustomerName(): string {
     return localStorage.getItem('customerName') || 'Guest';
   }
 
-  private apiUrl = 'http://localhost:8080/customers'; // ✅ Backend API URL
 
   constructor(private http: HttpClient) {}
 
