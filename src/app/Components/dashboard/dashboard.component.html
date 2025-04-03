@@ -2,17 +2,14 @@
 
 <div class="reports-container">
   <!-- Top Stats Section -->
-
   <div class="stats-section">
-    
     <div class="stats-card">
       <p>WALLET</p>
       <h2>{{ walletBalance | currency:'INR' }}</h2>
-      <button class="btn btn-primary"  (click)="openAddMoneyDialog('wallet')">Add Money</button>
+      <button class="btn btn-primary" (click)="openAddMoneyDialog('wallet')">Add Money</button>
     </div>
   </div>
-  
-  
+
   <!-- Main Reports Section -->
   <div class="main-reports">
     <div class="left">
@@ -21,43 +18,16 @@
         <canvas id="barChart"></canvas>
       </div>
     </div>
-
     <div class="right">
       <div class="chart-card">
-        <h3>Monthly Unit Consumed </h3>
+        <h3>Monthly Unit Consumed</h3>
         <canvas id="lineChart"></canvas>
       </div>
     </div>
   </div>
-  <!-- Billing Information -->
-  <div class="billing-info">
-    <h3>Billing Information</h3>
-    <div class="billing-item">
-      <p><strong>Oliver Liam</strong></p>
-      <p>Company: Viking Burrito</p>
-      <p>Email: oliverviking.com</p>
-      <p>VAT: FRB1235476</p>
-      <button class="edit-btn">Download Receipt</button>
+
+
+    <div class="recent-payments-card">
+      <app-recent-payment></app-recent-payment>
     </div>
-    <div class="billing-item">
-      <p><strong>Oliver Liam</strong></p>
-      <p>Company: Viking Burrito</p>
-      <p>Email: oliverviking.com</p>
-      <p>VAT: FRB1235476</p>
-      <button class="edit-btn">Download Receipt</button>
-    </div>
-    
-  </div>
-  <!-- Transactions -->
-  <div class="transactions">
-    <h3>Your Transactions</h3>
-    <p>📅 29 March 2023</p>
-    <ul>
-      <li><span>Netflix</span> <span class="expense">-$2500</span></li>
-      <li><span>Apple</span> <span class="expense">-$2000</span></li>
-      <li><span>Stripe</span> <span class="income">+$600</span></li>
-      <li><span>HubSpot</span> <span class="income">+$1700</span></li>
-      <li><span>Microsoft</span> <span class="expense">-$987</span></li>
-    </ul>
-  </div>
 </div>

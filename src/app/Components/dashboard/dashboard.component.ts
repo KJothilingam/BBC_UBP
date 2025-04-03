@@ -8,13 +8,14 @@ import { Chart, registerables } from 'chart.js';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { CommonModule } from '@angular/common';
 import { BillService } from '../../Services/bill.service';
+import { RecentPaymentComponent } from "../recent-payment/recent-payment.component";
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  imports: [CommonModule, SidebarComponent],
+  imports: [CommonModule, SidebarComponent, RecentPaymentComponent],
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {

@@ -1,0 +1,116 @@
+/* Cloudy Background */
+body {
+    background: linear-gradient(to bottom, #eef2f3, #d3cce3); /* Softer gradient */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Main Container */
+.recent-payments-container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.recent-payments-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Title Styling */
+h4 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+.recent-payments-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Header */
+.recent-payments-table thead {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+/* Table Cells */
+.recent-payments-table th,
+.recent-payments-table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+}
+
+/* Last Row Border Removal */
+.recent-payments-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Hover Effect on Table Rows */
+.recent-payments-table tbody tr {
+    transition: all 0.3s ease-in-out;
+}
+
+.recent-payments-table tbody tr:hover {
+    background: rgba(0, 123, 255, 0.15);
+    transform: scale(1.01);
+}
+
+/* Column Styling */
+.amount {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.payment-method {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ff6b6b;
+}
+
+.time {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .recent-payments-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .recent-payments-table th,
+    .recent-payments-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+}
