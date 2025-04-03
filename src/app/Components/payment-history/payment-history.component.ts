@@ -18,15 +18,20 @@ export class PaymentHistoryComponent implements OnInit {
 
   ngOnInit() {
     const customerId = this.getCustomerId(); // Get the logged-in user's customer ID
-    this.http.get<any[]>(`http://localhost:8080/payment-records/customer?customerId=${customerId}`).subscribe(data => {
-      this.payments = data.map(payment => ({
-        ...payment,
-        transactionId: payment.transactionId, // Ensure Transaction ID is used
-        paymentDateFormatted: this.convertToDate(payment.paymentDate),
-        dueDateFormatted: this.convertToDate(payment.dueDate)
-      }));
-    });
+  
+    this.http.get<any[]>(`http://localhost:8080/payment-records/customer?customerId=${customerId}`)
+      .subscribe(data => {
+        this.payments = data
+          .map(payment => ({
+            ...payment,
+            transactionId: payment.transactionId, // Ensure Transaction ID is used
+            paymentDateFormatted: this.convertToDate(payment.paymentDate),
+            dueDateFormatted: this.convertToDate(payment.dueDate)
+          }))
+          .sort((a, b) => new Date(b.paymentDate).getTime() - new Date(a.paymentDate).getTime()); // 🔹 Sorting by `paymentDate` (Latest First)
+      });
   }
+  
   
   
 

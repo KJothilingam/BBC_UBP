@@ -1,93 +1,210 @@
-/* Main Container */
+/* 🔹 Main Container */
 .container {
-    padding: 20px;
-    position: relative;
-    margin-left: 14%;
-    background: #F8FAFF;
-    min-height: 100vh;
-    max-width: 86%;
-    overflow: hidden;
-}
-.top-right-btn {
-    position: absolute;
-    top: 5vh;
-    right: 25vh;
-  }
-  
-/* Header Section */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  position: relative; /* ✅ Needed for absolute positioning inside */
+  padding: 20px;
+  margin-left: 14%;
+  background: linear-gradient(to bottom, #eef2f3, #dfe9f3);
+  min-height: 100vh;
+  max-width: 86%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
+/* 🔹 Pay Bills Button */
+.top-right-btn {
+  position: absolute; /* ✅ Keeps it fixed at top-right */
+  top: 20px;
+  right: 20px;
+  background: #673ab7;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10; /* ✅ Ensures it's always on top */
+}
+
+.top-right-btn:hover {
+  background: #512da8;
+  transform: scale(1.05);
+}
+
+/* 🔹 Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* 🔹 Bill Container (Fixes Overlap) */
 .bill-container {
-    border: 2px solid purple;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%;
-    margin: auto;
-    background-color: #fff;
-    margin-top: 30px;
-    margin-left: 20;
+  border: 2px solid #673ab7;
+  padding: 25px;
+  border-radius: 12px;
+  width: 98%;
+  max-width: 1100px;
+  margin: 30px auto;
+  background-color: #fff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  min-height: 200px;  /* ✅ Allows dynamic expansion */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 🔹 Hover Effect */
+.bill-container:hover {
+  transform: scale(1.02);
+}
+
+/* 🔹 Bill Title */
+.bill-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #673ab7;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* 🔹 Table */
+.bill-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fafafa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  table-layout: auto; /* ✅ Adjusts column widths dynamically */
+}
+
+/* 🔹 Table Header */
+.bill-table th {
+  background-color: #673ab7;
+  color: white;
+  font-weight: bold;
+  padding: 14px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* 🔹 Table Cells */
+.bill-table th, .bill-table td {
+  padding: 14px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  font-size: 16px;
+  white-space: normal; /* ✅ Ensures text wraps */
+  word-wrap: break-word;
+}
+
+/* 🔹 Hover Effect on Rows */
+.bill-table tr:hover {
+  background-color: #f0f0f0;
+  transition: background 0.3s ease-in-out;
+}
+
+/* 🔹 Payment Status Colors */
+.status-pending {
+  color: #d4a100;
+  font-weight: bold;
+}
+
+.status-paid {
+  color: #008000;
+  font-weight: bold;
+}
+
+.status-overdue {
+  color: #d40000;
+  font-weight: bold;
+}
+
+/* 🔹 Filter Dropdown */
+.filter-container {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.filter-container label {
+  font-weight: bold;
+  color: #333;
+}
+
+.filter-container select {
+  padding: 8px 12px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 🔹 Dropdown Hover */
+.filter-container select:hover {
+  border-color: #673ab7;
+}
+
+/* 🔹 PDF Download Button */
+.pdf-btn {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.pdf-btn i {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+.pdf-btn:hover {
+  background-color: #cc0000;
+}
+
+/* 🔹 Mobile Responsive */
+@media (max-width: 768px) {
+  .container {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 15px;
   }
-  
-  .bill-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
+
+  .bill-container {
+    width: 95%;
+    padding: 15px;
+    overflow-x: auto;
   }
-  
-  .bill-table {
-    width: 100%;
-    border-collapse: collapse;
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
-  
+
   .bill-table th, .bill-table td {
-    border-bottom: 1px solid #ddd;
     padding: 10px;
-    text-align: left;
+    font-size: 14px;
   }
-  
-  .bill-table th {
-    font-weight: bold;
+
+  /* ✅ Button Fixed for Mobile */
+  .top-right-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 100; /* Keeps it always on top */
+    width: auto;
   }
-  
-  .bill-table tr:hover {
-    background-color: #f5f5f5;
-  }
-  
-  /* Payment Status Styling */
-  .status-pending {
-    color: #d4a100;
-    font-weight: bold;
-  }
-  
-  .status-paid {
-    color: #008000;
-    font-weight: bold;
-  }
-  
-  .status-overdue {
-    color: #d40000;
-    font-weight: bold;
-  }
-  
-  .filter-container {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .filter-container label {
-    font-weight: bold;
-  }
-  
-  .filter-container select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
+}

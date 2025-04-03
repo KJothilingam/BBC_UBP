@@ -1,59 +1,75 @@
 <app-sidebar></app-sidebar>
 
 <div class="container">
-    
+
+    <!-- ✅ Pay Bills Button -->
+    <button type="button" class="btn btn-primary top-right-btn" 
+            [routerLink]="['/payment']" routerLinkActive="router-link-active">
+        Pay Bills 
+    </button>
+
+    <!-- ✅ Header -->
     <div class="header">
       <div>
-        <p class="breadcrumb">Pages / Reports</p>
-        <h2 class="title">Reports</h2>
-        <span class="branch">Lalitpur Branch</span>
+        <p class="breadcrumb">Bill / Reports</p>
+        <h2 class="title">Bill</h2>
+        <!-- <span class="branch">Lalitpur Branch</span> -->
       </div>
     </div>
 
-    <div style="position: relative; width: 100%;">
-        <button type="button" class="btn btn-primary top-right-btn" [routerLink]="['/payment']" routerLinkActive="router-link-active" >Pay Bills </button>
-      </div>
-  <div class="bill-container">
-    <h3 class="bill-title">Invoice Details - {{ customerName }} (ID: {{ customerId }})</h3>
+    <!-- ✅ Bill Container -->
+    <div class="bill-container">
+        <h3 class="bill-title">Invoice Details - {{ customerName }} (ID: {{ customerId }})</h3>
 
-    <!-- Filter Dropdown -->
-    <div class="filter-container">
-      <label for="statusFilter">Filter by Status:</label>
-      <select id="statusFilter" [(ngModel)]="selectedStatus" (change)="filterBills()">
-        <option value="">All</option>
-        <option value="PENDING">Pending</option>
-        <option value="PAID">Paid</option>
-        <option value="OVERDUE">Overdue</option>
-      </select>
+        <!-- ✅ Filter Dropdown -->
+        <div class="filter-container">
+          <label for="statusFilter">Filter by Status:</label>
+          <select id="statusFilter" [(ngModel)]="selectedStatus" (change)="filterBills()">
+            <option value="">All</option>
+            <option value="PENDING">Pending</option>
+            <option value="PAID">Paid</option>
+            <option value="OVERDUE">Overdue</option>
+          </select>
+        </div>
+
+        <!-- ✅ Invoice Table -->
+        <table class="bill-table">
+          <thead>
+            <tr>
+              <th>Customer ID</th>
+              <th>Meter Number</th>
+              <th>Invoice ID</th>
+              <th>Date</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th>Amount</th>
+              <th>Action</th> <!-- ✅ New Action Column -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bill of filteredBills">
+              <td>{{ bill.customer.customerId }}</td>
+              <td>{{ bill.customer.meterNumber }}</td>
+              <td>{{ bill.invoiceId }}</td>
+              <td>{{ bill.createdAt | date: 'dd.MMM.yyyy' }}</td>
+              <td>{{ bill.dueDate | date: 'dd.MMM.yyyy' }}</td>
+              <td [ngClass]="getPaymentStatusClass(bill.paymentStatus)">
+                {{ bill.paymentStatus }}
+              </td>
+              <td>Rs. {{ bill.totalBillAmount }}</td>
+
+              <!-- ✅ PDF Button -->
+              <td>
+                <!-- <button class="pdf-btn" (click)="generatePDF(bill)">
+                  📄 Download
+                </button> -->
+                <button (click)="generatePDF(bill)" class="pdf-btn">
+                  <i class="bi bi-filetype-pdf"></i> 
+              </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
     </div>
 
-    <table class="bill-table">
-      <thead>
-        <tr>
-          <th>Customer ID</th>
-          <th>Meter Number</th>
-          <th>Invoice ID</th>
-          <th>Date</th>
-          <th>Due Date</th>
-          <th>Status</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bill of filteredBills">
-          <td>{{ bill.customer.customerId }}</td> <!-- ✅ Corrected Access -->
-          <td>{{ bill.customer.meterNumber }}</td> <!-- ✅ Corrected Access -->
-          <td>{{ bill.invoiceId }}</td>
-          <td>{{ bill.createdAt | date: 'dd.MMM.yyyy' }}</td>
-          <td>{{ bill.dueDate | date: 'dd.MMM.yyyy' }}</td>
-          <td [ngClass]="getPaymentStatusClass(bill.paymentStatus)">
-            {{ bill.paymentStatus }}
-          </td>
-          <td>Rs. {{ bill.totalBillAmount }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  
 </div>
