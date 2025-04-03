@@ -36,5 +36,15 @@ export class AuthService {
   verifyOtp(email: string, otp: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/verify-otp`, { email, otp });
   }
+
+  logout(): void {
+    localStorage.clear(); // ✅ Clear all stored user data
+    window.location.href = 'http://localhost:5200'; // ✅ Redirect to login page
+  }
+  
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('customerId'); // ✅ Checks if customerId exists in localStorage
+  }
+
   
 }
