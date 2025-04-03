@@ -7,6 +7,7 @@ import { AddMoneyModalComponent } from '../add-money-modal/add-money-modal.compo
 import { Chart, registerables } from 'chart.js';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { CommonModule } from '@angular/common';
+import { BillService } from '../../Services/bill.service';
 
 Chart.register(...registerables);
 
@@ -24,6 +25,7 @@ export class DashboardComponent {
   customerId!: number;
 
   constructor(
+    private billService: BillService,
     private dialog: MatDialog,
     private walletService: WalletService,
     private authService: AuthService,
@@ -32,9 +34,56 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.customerId = this.authService.getCustomerId();
+    this.fetchWalletBalance();
+  }
+
+  ngAfterViewInit() {
     if (this.customerId) {
-      this.fetchWalletBalance();
+      this.fetchChartData();
     }
+  }
+
+  fetchChartData() {
+    this.billService.getMonthlyStats(this.customerId).subscribe((data) => {
+      const months = data.months.map((m: number) => this.getMonthName(m));
+      const payments = data.payments;
+      const units = data.units;
+
+      // Bar Chart (Monthly Payments)
+      new Chart("barChart", {
+        type: 'bar',
+        data: {
+          labels: months,
+          datasets: [{
+            label: 'Active Users',
+            data: payments,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 2
+          }]
+        }
+      });
+
+      // Line Chart (Monthly Units Consumed)
+      new Chart("lineChart", {
+        type: 'line',
+        data: {
+          labels: months,
+          datasets: [{
+            label: 'Sales',
+            data: units,
+            borderColor: '#4fd1c5',
+            backgroundColor: 'rgba(79, 209, 197, 0.2)',
+            borderWidth: 2
+          }]
+        }
+      });
+    });
+  }
+
+  getMonthName(month: number): string {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return monthNames[month - 1];
   }
 
   // Fetch current wallet balance
@@ -97,33 +146,5 @@ export class DashboardComponent {
     );
   }
 
-  ngAfterViewInit() {
-    new Chart("barChart", {
-      type: 'bar',
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-        datasets: [{
-          label: 'Active Users',
-          data: [200, 450, 300, 500, 700],
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 2
-        }]
-      }
-    });
-
-    new Chart("lineChart", {
-      type: 'line',
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-        datasets: [{
-          label: 'Sales',
-          data: [150, 300, 250, 400, 600],
-          borderColor: '#4fd1c5',
-          backgroundColor: 'rgba(79, 209, 197, 0.2)',
-          borderWidth: 2
-        }]
-      }
-    });
-  }
+  
 }

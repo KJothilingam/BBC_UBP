@@ -2,40 +2,9 @@
 
 <div class="reports-container">
   <!-- Top Stats Section -->
-  <!-- <div class="stats-section">
-    <div class="stats-card">
-      <p>CREDIT CARD</p>
-      <h2>{{ creditCardBalance | currency:'INR' }}</h2>
-    </div>
-    <div class="stats-card">
-      <p>DEBIT CARD</p>
-      <h2>{{ debitCardBalance | currency:'INR' }}</h2>
-    </div>
-    <div class="stats-card">
-      <p>UPI</p>
-      <h2>{{ upiBalance | currency:'INR' }}</h2>
-    </div>
-    <div class="stats-card">
-      <p>WALLET</p>
-      <h2>{{ walletBalance | currency:'INR' }}</h2>
-    </div>
-  </div> -->
+
   <div class="stats-section">
-    <!-- <div class="stats-card">
-      <p>CREDIT CARD</p>
-      <h2>{{ creditCardBalance | currency:'INR' }}</h2>
-      <button class="btn btn-primary"(click)="openAddMoneyDialog('creditCard')">Add Money</button>
-    </div>
-    <div class="stats-card">
-      <p>DEBIT CARD</p>
-      <h2>{{ debitCardBalance | currency:'INR' }}</h2>
-      <button class="btn btn-primary" (click)="openAddMoneyDialog('debitCard')">Add Money</button>
-    </div>
-    <div class="stats-card">
-      <p>UPI</p>
-      <h2>{{ upiBalance | currency:'INR' }}</h2>
-      <button class="btn btn-primary" (click)="openAddMoneyDialog('upi')">Add Money</button>
-    </div> -->
+    
     <div class="stats-card">
       <p>WALLET</p>
       <h2>{{ walletBalance | currency:'INR' }}</h2>
@@ -48,14 +17,14 @@
   <div class="main-reports">
     <div class="left">
       <div class="chart-card">
-        <h3>Active Users</h3>
+        <h3>Monthly Payment</h3>
         <canvas id="barChart"></canvas>
       </div>
     </div>
 
     <div class="right">
       <div class="chart-card">
-        <h3>Sales Overview</h3>
+        <h3>Monthly Unit Consumed </h3>
         <canvas id="lineChart"></canvas>
       </div>
     </div>
