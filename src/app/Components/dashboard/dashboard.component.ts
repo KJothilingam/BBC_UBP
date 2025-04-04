@@ -56,7 +56,7 @@ export class DashboardComponent {
         data: {
           labels: months,
           datasets: [{
-            label: 'Active Users',
+            label: 'Total Amount',
             data: payments,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
@@ -71,7 +71,7 @@ export class DashboardComponent {
         data: {
           labels: months,
           datasets: [{
-            label: 'Sales',
+            label: 'Unit Consumed',
             data: units,
             borderColor: '#4fd1c5',
             backgroundColor: 'rgba(79, 209, 197, 0.2)',
