@@ -33,5 +33,10 @@ export const routes: Routes = [
         loadComponent :()=>import('./Components/profile/profile.component').then((c)=> c.ProfileComponent),
         canActivate: [AuthGuard]
     },
+    {
+        path:'report',
+        loadComponent :()=>import('./Components/report/report.component').then((c)=> c.ReportComponent),
+        canActivate: [AuthGuard]
+    },
    
 ];

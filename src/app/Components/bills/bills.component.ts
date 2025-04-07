@@ -41,6 +41,7 @@ export class BillsComponent implements OnInit {
       (response) => {
         this.bills = response.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()); // 🔹 Sort by `createdAt` (latest first)
         this.filteredBills = [...this.bills];
+        console.log(this.bills);
       },
       (error) => {
         console.error('Error fetching bills:', error);

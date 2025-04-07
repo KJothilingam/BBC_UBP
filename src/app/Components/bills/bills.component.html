@@ -36,6 +36,7 @@
         <table class="bill-table">
           <thead>
             <tr>
+              <th>Bill ID</th> 
               <th>Customer ID</th>
               <th>Meter Number</th>
               <th>Invoice ID</th>
@@ -48,6 +49,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let bill of filteredBills">
+              <td>{{ bill.billId }}</td> <!-- ✅ Added -->
               <td>{{ bill.customer.customerId }}</td>
               <td>{{ bill.customer.meterNumber }}</td>
               <td>{{ bill.invoiceId }}</td>

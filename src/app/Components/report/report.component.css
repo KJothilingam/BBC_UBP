@@ -1,0 +1,110 @@
+.report-container {
+    max-width: 850px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.4s ease;
+  }
+  
+  .report-container:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  h2, h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #6a1b9a;
+  }
+  
+  .form-select,
+  .form-control,
+  textarea {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .form-control:focus,
+  textarea:focus,
+  .form-select:focus {
+    border-color: #6a1b9a;
+    box-shadow: 0 0 0 4px rgba(106, 27, 154, 0.1);
+    outline: none;
+  }
+  
+  .submit-btn {
+    padding: 10px 24px;
+    font-size: 1rem;
+    background: linear-gradient(to right, #6a1b9a, #8e24aa);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(106, 27, 154, 0.2);
+    background: linear-gradient(to right, #7b1fa2, #9c27b0);
+  }
+  
+  .table-responsive tbody tr {
+    transition: all 0.3s ease;
+  }
+  
+  .table-responsive tbody tr:hover {
+    transform: scale(1.01);
+    background-color: #fafafa;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .table {
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 15px;
+  }
+  
+  thead {
+    background-color: #6a1b9a;
+    color: white;
+  }
+  
+  .table td,
+  .table th {
+    vertical-align: middle;
+  }
+  
+  span {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: inline-block;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .report-container {
+      padding: 1rem;
+    }
+  
+    .form-control,
+    .form-select,
+    textarea {
+      font-size: 0.95rem;
+    }
+  
+    .submit-btn {
+      width: 100%;
+    }
+  
+    .table-responsive {
+      font-size: 0.9rem;
+    }
+  }
+  

@@ -1,0 +1,91 @@
+<app-sidebar></app-sidebar>
+
+<div class="report-container container mt-4">
+  <h2 class="text-center text-primary mb-4">Raise a Request</h2>
+
+  <form (ngSubmit)="submitRequest()" #reportForm="ngForm" class="mb-5">
+    <div class="row g-3">
+
+      <div class="col-md-6">
+        <label for="requestType" class="form-label">Select Request Type:</label>
+        <select id="requestType" [(ngModel)]="selectedRequestType" name="requestType" class="form-select" required>
+          <option value="" disabled [selected]="!selectedRequestType">Select type</option>
+          <option value="READING_FAULT">Reading Unit Consumed Fault</option>
+          <option value="NAME_CHANGE">Name Change</option>
+          <option value="EMAIL_CHANGE">Email Change</option>
+          <option value="PHONE_CHANGE">Phone Number Change</option>
+          <option value="ADDRESS_CHANGE">Address Change</option>
+          <option value="EXTEND_DUE_DATE">Extend Due Date</option>
+        </select>
+      </div>
+
+      <div class="col-md-6" *ngIf="isBillIdRequired()">
+        <label for="billId" class="form-label">Bill ID:</label>
+        <input type="number" [(ngModel)]="newRequest.billId" name="billId" class="form-control" required />
+      </div>
+
+      <div class="col-md-6" *ngIf="isNewValueRequired()">
+        <label for="newValue" class="form-label">Enter New Value:</label>
+        <input type="text" [(ngModel)]="newRequest.newValue" name="newValue" class="form-control" required />
+      </div>
+
+      <div class="col-md-6" *ngIf="isExtendDaysRequired()">
+        <label for="extendDays" class="form-label">How many days to extend?</label>
+        <input type="number" [(ngModel)]="newRequest.extendDays" name="extendDays" class="form-control" required />
+      </div>
+
+      <div class="col-12">
+        <label for="details" class="form-label">Additional Details:</label>
+        <textarea [(ngModel)]="newRequest.details" name="details" class="form-control" rows="3"
+          placeholder="Write any additional info here..."></textarea>
+      </div>
+
+      <div class="col-12 text-end mt-3">
+        <button type="submit" class="submit-btn">Submit Request</button>
+      </div>
+    </div>
+  </form>
+
+  <h3 class="text-center text-primary mt-5">Raised Report Requests</h3>
+
+  <div *ngIf="customerRequests.length === 0" class="alert alert-info text-center">
+    No requests raised yet.
+  </div>
+
+  <div *ngIf="customerRequests.length > 0" class="table-responsive mt-3">
+    <table class="table table-bordered table-striped text-center">
+      <thead class="table-primary">
+        <tr>
+          <th>Request ID</th>
+          <th>Request Type</th>
+          <th>Bill ID</th>
+          <th>New Value</th>
+          <th>Extend Days</th>
+          <th>Details</th>
+          <th>Status</th>
+          <th>Request Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let req of customerRequests">
+          <td>{{ req.requestId }}</td>
+          <td>{{ req.requestType || '-' }}</td>
+          <td>{{ req.billId || '-' }}</td>
+          <td>{{ req.newValue || '-' }}</td>
+          <td>{{ req.extendDays || '-' }}</td>
+          <td>{{ req.details || '-' }}</td>
+          <td>
+            <span [ngClass]="{
+              'text-success': req.status === 'SUCCESS' || req.status === 'COMPLETED',
+              'text-warning': req.status === 'IN_PROCESS',
+              'text-danger': req.status === 'DECLINED'
+            }">
+              {{ req.status }}
+            </span>
+          </td>
+          <td>{{ req.requestDate ? (req.requestDate | date: 'dd-MM-yyyy') : '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
