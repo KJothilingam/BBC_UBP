@@ -25,7 +25,7 @@ export const appConfig: ApplicationConfig = {
       MatFormFieldModule, 
       MatSelectModule, 
       MatOptionModule, 
-      MatButtonModule // ✅ Added missing modules
+      MatButtonModule 
     ),
     importProvidersFrom(ToastrModule.forRoot({
       timeOut: 1000,

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/customers'; // ✅ Backend API URL
+  private apiUrl = 'http://localhost:8080/customers';
 
    getCustomerId(): number {
     return Number(localStorage.getItem('customerId')) || 0;
@@ -38,12 +38,12 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.clear(); // ✅ Clear all stored user data
-    window.location.href = 'http://localhost:5200'; // ✅ Redirect to login page
+    localStorage.clear(); 
+    window.location.href = 'http://localhost:5200'; 
   }
   
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('customerId'); // ✅ Checks if customerId exists in localStorage
+    return !!localStorage.getItem('customerId'); 
   }
 
   

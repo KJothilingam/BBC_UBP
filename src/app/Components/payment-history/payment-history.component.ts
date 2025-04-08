@@ -24,11 +24,11 @@ export class PaymentHistoryComponent implements OnInit {
         this.payments = data
           .map(payment => ({
             ...payment,
-            transactionId: payment.transactionId, // Ensure Transaction ID is used
+            transactionId: payment.transactionId, 
             paymentDateFormatted: this.convertToDate(payment.paymentDate),
             dueDateFormatted: this.convertToDate(payment.dueDate)
           }))
-          .sort((a, b) => new Date(b.paymentDate).getTime() - new Date(a.paymentDate).getTime()); // 🔹 Sorting by `paymentDate` (Latest First)
+          .sort((a, b) => new Date(b.paymentDate).getTime() - new Date(a.paymentDate).getTime());
       });
   }
   

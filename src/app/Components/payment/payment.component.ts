@@ -1,13 +1,8 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-// import { PaymentService } from '../../services/payment.service';
-// import { BillService } from '../../services/bill.service';
-// import { PaymentRequest } from './../../Interfaces/payment.model';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { PaymentRequest } from '../../Interface/payment.model';
-
-// 🔹 Import Angular Material Modules
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -15,19 +10,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrService } from 'ngx-toastr';
-  import * as QRCode from 'qrcode';
-  // import jsPDF from 'jspdf';
-  // import autoTable from 'jspdf-autotable';
-  
+import * as QRCode from 'qrcode';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import { AuthService } from '../../Services/auth.service';
 import { PaymentService } from '../../Services/payment.service';
 import { BillService } from '../../Services/bill.service';
-import { PaymentHistoryComponent } from "../payment-history/payment-history.component";
-// import * as QRCode from 'qrcode';  
-import autoTable from 'jspdf-autotable';
-// import jsPDF from 'jspdf';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -38,7 +25,6 @@ import autoTable from 'jspdf-autotable';
     FormsModule,
     ReactiveFormsModule,
     SidebarComponent,
-    // 🔹 Angular Material Modules
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -50,7 +36,7 @@ import autoTable from 'jspdf-autotable';
 export class PaymentComponent {
   paymentForm: FormGroup;
   isProcessing = false;
-  bills: any[] = []; // Store fetched bills
+  bills: any[] = []; 
   paymentData: any = {};
   showModal = false;
   userName: string | null = 'N/A';
@@ -62,7 +48,7 @@ export class PaymentComponent {
     private billService: BillService,
     private toastr: ToastrService,
     private authService: AuthService, 
-    private cd: ChangeDetectorRef // 🔹 Force UI update
+    private cd: ChangeDetectorRef
   ) {
     this.paymentForm = this.fb.group({
       meterNumber: ['', Validators.required],
@@ -71,10 +57,6 @@ export class PaymentComponent {
       dueDate: [{ value: '', disabled: true }],
       paymentMethod: ['', Validators.required]
     });
-
-    // const userDetails = this.authService.getUserDetails();
-    // this.userName = userDetails?.userName ?? 'N/A';
-    // this.designation = userDetails?.designation ?? 'N/A';
   }
 
   closeModal() {
@@ -85,7 +67,7 @@ export class PaymentComponent {
   fetchBills() {
     const meterNumber = this.paymentForm.get('meterNumber')?.value?.trim();
 
-    console.log("Meter Number Entered:", meterNumber); // Debugging log
+    console.log("Meter Number Entered:", meterNumber); 
 
     if (!meterNumber) {
       this.toastr.warning('Please enter a meter number.', 'Warning', this.getToastrConfig());
@@ -94,15 +76,15 @@ export class PaymentComponent {
 
     this.billService.getUnpaidBillsByMeter(meterNumber).subscribe({
       next: (data) => {
-        console.log("Fetched Bills:", data); // Debugging log
+        console.log("Fetched Bills:", data); 
 
-        if (!data || data.length === 0) { // ✅ Handle null/empty array
+        if (!data || data.length === 0) { 
           this.bills = [];
           this.toastr.info('No pending bills.', 'Info', this.getToastrConfig());
           return;
         }
 
-        this.bills = data; // ✅ Only assign if data is valid
+        this.bills = data; 
       },
       error: (err) => {
         console.error('API Error:', err);
@@ -136,41 +118,10 @@ export class PaymentComponent {
         customerEmail: selectedBill.customer?.email ?? 'N/A',
       };
 
-      this.cd.detectChanges(); // ✅ Force UI update
+      this.cd.detectChanges(); 
     }
   }
 
-  // 🔹 Process payment
-  // processPayment() {
-  //   if (this.paymentForm.invalid) {
-  //     this.toastr.error('Please fill in all required fields.', 'Error', this.getToastrConfig());
-  //     return;
-  //   }
-
-  //   this.isProcessing = true;
-  //   this.paymentForm.disable();
-
-  //   const paymentData: PaymentRequest = this.paymentForm.getRawValue();
-
-  //   this.paymentService.processPayment(paymentData).subscribe({
-  //     next: (response) => {
-  //       this.paymentData = {
-  //         ...response, // ✅ Keep payment response
-  //         customerName: this.paymentData.customerName ?? 'N/A',
-  //         customerEmail: this.paymentData.customerEmail ?? 'N/A'
-  //       };
-
-  //       this.toastr.success('Payment Successful!', 'Success', this.getToastrConfig());
-  //       this.generatePDFReceipt();
-  //       this.resetForm();
-  //     },
-  //     error: () => {
-  //       this.toastr.error('Payment Failed! Try again.', 'Error', this.getToastrConfig());
-  //       this.isProcessing = false;
-  //       this.paymentForm.enable();
-  //     }
-  //   });
-  // }
 
   processPayment() {
     if (this.paymentForm.invalid) {
@@ -186,7 +137,7 @@ export class PaymentComponent {
     this.paymentService.processPayment(paymentData).subscribe({
       next: (response) => {
         if (response.success) {
-          // ✅ Only update the UI and generate the PDF if the payment was successful
+        
           this.paymentData = {
             ...response,
             customerName: this.paymentData.customerName ?? 'N/A',
@@ -194,10 +145,10 @@ export class PaymentComponent {
           };
   
           this.toastr.success('Payment Successful!', 'Success', this.getToastrConfig());
-          this.generatePDFReceipt(); // ✅ Generate PDF only if success
+          this.generatePDFReceipt(); 
           this.resetForm();
         } else {
-          // 🛑 Handle failed payment properly
+         
           this.toastr.error(response.message || 'Payment Failed! Try again.', 'Error', this.getToastrConfig());
           this.isProcessing = false;
           this.paymentForm.enable();
@@ -212,7 +163,7 @@ export class PaymentComponent {
   }
   
 
-  // 🔹 Reset form after payment
+  //  Reset form after payment
   private resetForm() {
     this.isProcessing = false;
     this.paymentForm.reset();
@@ -220,7 +171,7 @@ export class PaymentComponent {
     this.bills = [];
   }
 
-  // 🔹 Generate PDF Receipt
+  //  Generate PDF Receipt
 
   generatePDFReceipt() {
     if (!this.paymentData || Object.keys(this.paymentData).length === 0) {
@@ -230,39 +181,39 @@ export class PaymentComponent {
   
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
-    let y = 15; // Starting Y position
+    let y = 15; 
   
-    // 🔹 **Header with Company Logo & Title**
-    const logoUrl = 'https://cdn-icons-png.flaticon.com/512/1827/1827504.png'; // Company Logo
-    doc.setFillColor(0, 51, 153); // Dark Blue Header
+    //  **Header with Company Logo & Title**
+    const logoUrl = 'https://cdn-icons-png.flaticon.com/512/1827/1827504.png'; 
+    doc.setFillColor(0, 51, 153); 
     doc.rect(0, 0, pageWidth, 30, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
-    doc.addImage(logoUrl, 'PNG', 15, 5, 20, 20); // Logo at top left
+    doc.addImage(logoUrl, 'PNG', 15, 5, 20, 20); 
     doc.text("Electricity Bill Payment Receipt", pageWidth / 2, y, { align: "center" });
   
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
-    y += 30; // Move down
+    y += 30; 
   
     // Function to draw a table row with alternating colors
     function drawRow(label: string, value: string, startX: number, rowY: number, rowWidth: number, rowHeight: number, isAlternate: boolean, isBold: boolean = false, textColor: string = "black") {
-      doc.setFillColor(isAlternate ? 230 : 245, isAlternate ? 245 : 255, 255); // Light blue & white alternating colors
-      doc.rect(startX, rowY, rowWidth, rowHeight, 'F'); // Fill background
-      doc.setDrawColor(180, 180, 180); // Border gray
-      doc.rect(startX, rowY, rowWidth, rowHeight); // Border
+      doc.setFillColor(isAlternate ? 230 : 245, isAlternate ? 245 : 255, 255); 
+      doc.rect(startX, rowY, rowWidth, rowHeight, 'F'); 
+      doc.setDrawColor(180, 180, 180); 
+      doc.rect(startX, rowY, rowWidth, rowHeight); 
   
       if (isBold) doc.setFont("helvetica", "bold");
       else doc.setFont("helvetica", "normal");
   
-      if (textColor === "red") doc.setTextColor(255, 0, 0); // Highlight in red
+      if (textColor === "red") doc.setTextColor(255, 0, 0); 
       else doc.setTextColor(0, 0, 0);
   
       doc.text(label, startX + 5, rowY + rowHeight / 2);
       doc.text(value, startX + rowWidth / 2 + 5, rowY + rowHeight / 2);
   
-      doc.setFont("helvetica", "normal"); // Reset font
-      doc.setTextColor(0, 0, 0); // Reset text color
+      doc.setFont("helvetica", "normal"); 
+      doc.setTextColor(0, 0, 0); 
     }
   
     const tableX = 20;
@@ -270,7 +221,7 @@ export class PaymentComponent {
     const rowHeight = 8;
   
     // 🔹 **Customer Details (with Icon)**
-    const customerIcon = 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png'; // User icon
+    const customerIcon = 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png'; 
     doc.addImage(customerIcon, 'PNG', tableX, y - 2, 6, 6);
     doc.setFontSize(14);
     doc.setTextColor(0, 51, 153);
@@ -291,7 +242,7 @@ export class PaymentComponent {
       y += rowHeight;
     });
   
-    y += 10; // Space before next section
+    y += 10; 
   
     // 🔹 **Invoice & Payment Details (with Icon)**
     const invoiceIcon = 'https://cdn-icons-png.flaticon.com/512/166/166258.png'; // Invoice icon
@@ -317,7 +268,7 @@ export class PaymentComponent {
       ["Discount", `₹${this.paymentData.discountApplied ?? "0.00"}`],
       ["GST", `₹${this.paymentData.gst ?? "0.00"}`],
       ["Net Payable", `₹${this.paymentData.netPayable ?? "0.00"}`],
-      ["Amount Paid", `₹${calculatedAmountPaid.toFixed(2)}`], // ✅ Highlighted
+      ["Amount Paid", `₹${calculatedAmountPaid.toFixed(2)}`], 
       ["Payment Method", this.paymentData.paymentMethod ?? "N/A"],
       ["Transaction ID", this.paymentData.transactionId ?? "N/A"],
     ];
@@ -328,7 +279,7 @@ export class PaymentComponent {
       y += rowHeight;
     });
   
-    y += 10; // Space before QR Code
+    y += 10; 
   
     // 🔹 **Generate QR Code**
     const qrData = `Invoice ID: ${this.paymentData.invoiceId}

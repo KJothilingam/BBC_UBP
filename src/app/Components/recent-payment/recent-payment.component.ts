@@ -12,7 +12,7 @@ import { AuthService } from '../../Services/auth.service';
 
 export class RecentPaymentComponent implements OnInit {
   payments: any[] = [];
-  meterNumber: string = ''; // ✅ Store meter number
+  meterNumber: string = ''; 
 
   constructor(
     private dashboardService: DashboardService,
@@ -21,16 +21,16 @@ export class RecentPaymentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadCustomerDetails(); // ✅ Fetch meter number first
+    this.loadCustomerDetails(); 
   }
 
   loadCustomerDetails() {
     this.authService.getCustomerDetails().subscribe({
       next: (customer) => {
         console.log("Customer details:", customer);
-        this.meterNumber = customer.meterNumber; // ✅ Get meterNumber from customer details
+        this.meterNumber = customer.meterNumber; 
         if (this.meterNumber) {
-          this.loadPayments(); // ✅ Fetch payments after getting meterNumber
+          this.loadPayments(); 
         }
       },
       error: (error) => {
@@ -45,7 +45,7 @@ export class RecentPaymentComponent implements OnInit {
         console.log("Payments fetched:", data);
         this.payments = data.map(payment => ({
           ...payment,
-          paymentDate: new Date(payment.paymentDate) // Convert timestamp to Date
+          paymentDate: new Date(payment.paymentDate) 
         }));
       },
       error: (error) => {

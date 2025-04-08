@@ -109,14 +109,12 @@ export class DashboardComponent {
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Log the request being sent to the backend
         console.log('Request sent:', {
           customerId: this.customerId,
           amount: result.amount,
           paymentMethod: result.paymentMethod
         });
 
-        // Call the add money function
         this.addMoney(result.amount, result.paymentMethod);
       }
     });
@@ -134,7 +132,7 @@ export class DashboardComponent {
       (response) => {
         if (response && response.message) {
           this.toastr.success(response.message);
-          this.fetchWalletBalance(); // Refresh wallet balance after adding money
+          this.fetchWalletBalance();
         }
       },
       (error) => {
