@@ -165,7 +165,7 @@ export class BillsComponent implements OnInit {
 
         drawRow("Units Consumed", `${bill.unitConsumed} kWh`, y, false, 224, 255, 255);
         y += 12;
-        drawRow("Amount", `₹${bill.totalBillAmount}`, y, true, 255, 235, 205); 
+        drawRow("Amount", `Rs.${bill.totalBillAmount}`, y, true, 255, 235, 205); 
         y += 20;
 
         doc.setFillColor(0, 102, 204);

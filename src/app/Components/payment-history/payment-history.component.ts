@@ -123,11 +123,11 @@ export class PaymentHistoryComponent implements OnInit {
     y += 12;
 
     // Billing Details Section
-    drawRow("Total Bill Amount", `₹${payment.totalBillAmount}`, y, true, 255, 235, 205);  // Light Yellow
+    drawRow("Total Bill Amount", `Rs.${payment.totalBillAmount}`, y, true, 255, 235, 205);  // Light Yellow
     y += 12;
-    drawRow("Discount Applied", `₹${payment.discountApplied}`, y, false, 240, 248, 255);  // Light Cyan
+    drawRow("Discount Applied", `Rs.${payment.discountApplied}`, y, false, 240, 248, 255);  // Light Cyan
     y += 12;
-    drawRow("Final Amount Paid", `₹${payment.finalAmountPaid}`, y, false, 255, 250, 250);
+    drawRow("Final Amount Paid", `Rs.${payment.finalAmountPaid}`, y, false, 255, 250, 250);
     y += 12;
 
     // Footer

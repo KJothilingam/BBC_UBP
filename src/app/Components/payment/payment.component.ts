@@ -277,13 +277,13 @@ export class PaymentComponent {
       ["Unit Consumed", `${this.paymentData.unitConsumed ?? "0"} kWh`],
       ["Due Date", this.paymentData.dueDate ? new Date(this.paymentData.dueDate).toLocaleDateString() : "N/A"],
       ["Payment Date", this.paymentData.paymentDate ? new Date(this.paymentData.paymentDate).toLocaleDateString() : "N/A"],
-      ["Bill Amount", `₹${this.paymentData.totalBillAmount ?? "0.00"}`],
-      ["Previous Due", `₹${this.paymentData.previousDue ?? "0.00"}`],
-      ["Late Fee", `₹${this.paymentData.lateFee ?? "0.00"}`],
-      ["Discount", `₹${this.paymentData.discountApplied ?? "0.00"}`],
-      ["GST", `₹${this.paymentData.gst ?? "0.00"}`],
-      ["Net Payable", `₹${this.paymentData.netPayable ?? "0.00"}`],
-      ["Amount Paid", `₹${calculatedAmountPaid.toFixed(2)}`], 
+      ["Bill Amount", `Rs.${this.paymentData.totalBillAmount ?? "0.00"}`],
+      // ["Previous Due", `Rs.${this.paymentData.previousDue ?? "0.00"}`],
+      // ["Late Fee", `Rs.${this.paymentData.lateFee ?? "0.00"}`],
+      ["Discount", `Rs.${this.paymentData.discountApplied ?? "0.00"}`],
+      // ["GST", `Rs.${this.paymentData.gst ?? "0.00"}`],
+      // ["Net Payable", `Rs.${this.paymentData.netPayable ?? "0.00"}`],
+      ["Amount Paid", `Rs.${calculatedAmountPaid.toFixed(2)}`], 
       ["Payment Method", this.paymentData.paymentMethod ?? "N/A"],
       ["Transaction ID", this.paymentData.transactionId ?? "N/A"],
     ];
@@ -300,7 +300,7 @@ export class PaymentComponent {
     const qrData = `Invoice ID: ${this.paymentData.invoiceId}
   Customer: ${this.paymentData.customerName}
   Meter No: ${this.paymentData.meterNumber}
-  Amount Paid: ₹${calculatedAmountPaid.toFixed(2)}`;
+  Amount Paid: Rs.${calculatedAmountPaid.toFixed(2)}`;
   
     QRCode.toDataURL(qrData, { width: 100 }, (err, qrUrl) => {
       if (!err) {
