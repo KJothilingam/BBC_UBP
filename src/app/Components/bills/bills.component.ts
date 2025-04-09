@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-
+import autoTable from 'jspdf-autotable';
 @Component({
   selector: 'app-bills',
   standalone: true,
@@ -183,5 +183,38 @@ export class BillsComponent implements OnInit {
         console.error("⚠️ Error: Failed to load logo image.");
         doc.save(`Invoice_${bill.invoiceId}.pdf`);
     };
+}
+
+downloadPdf(): void {
+  const doc = new jsPDF();
+
+  const title = 'Invoice Records';
+  doc.setFontSize(18);
+  doc.text(title, 14, 15);
+
+  const headers = [['Invoice ID', 'Customer Name', 'Amount (Rs.)', 'Issue Date', 'Payment Status']];
+
+  // Use filteredBills if a filter is applied, otherwise use all bills
+  const dataSource = this.selectedStatus ? this.filteredBills : this.bills;
+
+  const data = dataSource.map(bill => [
+    bill.invoiceId ?? 'N/A',
+    bill.customer?.name ?? 'N/A',
+    bill.totalBillAmount ?? 'N/A',
+    new Date(bill.createdAt).toLocaleDateString() ?? 'N/A',
+    bill.paymentStatus ?? 'N/A'
+  ]);
+
+  autoTable(doc, {
+    startY: 25,
+    head: headers,
+    body: data,
+    theme: 'striped',
+    styles: { fontSize: 10 },
+    headStyles: { fillColor: [0, 102, 204], textColor: 255 },
+    margin: { top: 25 }
+  });
+
+  doc.save('invoice-records.pdf');
 }
 }
