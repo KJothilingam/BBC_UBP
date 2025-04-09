@@ -41,6 +41,7 @@ export class PaymentComponent {
   showModal = false;
   userName: string | null = 'N/A';
   designation: string | null = 'N/A';
+  meterNumber: string = '';
 
   constructor(
     private fb: FormBuilder, 
@@ -58,6 +59,20 @@ export class PaymentComponent {
       paymentMethod: ['', Validators.required]
     });
   }
+  ngOnInit(): void {
+    // Fetch meter number from AuthService and patch the form
+    this.authService.getCustomerDetails().subscribe({
+      next: (data) => {
+        this.meterNumber = data.meterNumber;
+        this.paymentForm.patchValue({ meterNumber: this.meterNumber });
+      },
+      error: (err) => {
+        console.error("Failed to fetch customer details:", err);
+        this.toastr.error("Unable to fetch meter number.");
+      }
+    });
+  }
+
 
   closeModal() {
     this.showModal = false;
@@ -306,14 +321,6 @@ export class PaymentComponent {
     });
   }
   
-  
-
-
-
-
-
-
-
   // 🔹 Toastr Configuration
   private getToastrConfig() {
     return { timeOut: 3000, positionClass: 'toast-top-right' };

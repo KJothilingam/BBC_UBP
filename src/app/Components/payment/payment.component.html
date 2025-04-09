@@ -10,8 +10,10 @@
                 <!-- Meter Number Input -->
                 <mat-form-field class="w-full custom-field">
                     <mat-label>Meter No.</mat-label>
-                    <input matInput formControlName="meterNumber" placeholder="Enter Meter No." (blur)="fetchBills()" />
+                    <input matInput formControlName="meterNumber" placeholder="Enter Meter No." (blur)="fetchBills()" readonly />
                 </mat-form-field>
+
+                
 
                 <!-- Bill ID Dropdown -->
                 <mat-form-field class="w-full custom-field">
