@@ -105,9 +105,15 @@ export class ReportComponent implements OnInit {
     }
   }
 
+  // isBillIdRequired(): boolean {
+  //   return this.selectedRequestType === 'READING_FAULT' || this.selectedRequestType === 'EXTEND_DUE_DATE';
+  // }
   isBillIdRequired(): boolean {
-    return this.selectedRequestType === 'READING_FAULT' || this.selectedRequestType === 'EXTEND_DUE_DATE';
+    return this.selectedRequestType === 'READING_FAULT' ||
+           this.selectedRequestType === 'EXTEND_DUE_DATE' ||
+           this.selectedRequestType === 'BILL_WAIVE_OFF';
   }
+  
 
   isNewValueRequired(): boolean {
     return ['NAME_CHANGE', 'EMAIL_CHANGE', 'PHONE_CHANGE', 'ADDRESS_CHANGE'].includes(this.selectedRequestType);

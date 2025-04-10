@@ -4,6 +4,7 @@ export enum ReportRequestType {
     EMAIL_CHANGE = 'Email Change',
     ADDRESS_CHANGE = 'Address Change',
     PHONE_CHANGE = 'Phone Number Change',
-    EXTEND_DUE_DATE = 'Extend Due Date'
+    EXTEND_DUE_DATE = 'Extend Due Date',
+    BILL_WAIVE_OFF = 'Request for Bill Waive Off'
   }
   
