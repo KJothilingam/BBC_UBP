@@ -24,6 +24,14 @@
         <!-- ✅ Filter Dropdown -->
        
         <div class="filter-container">
+           <!-- 🔍 Search Input -->
+           <input 
+           type="text" 
+           placeholder="Search by Bill ID, Customer ID or Meter Number"
+           [(ngModel)]="searchTerm"
+           (input)="searchBills()"
+           class="search-input"
+           />
           <label for="statusFilter">Filter by Status:</label>
           <select id="statusFilter" [(ngModel)]="selectedStatus" (change)="filterBills()">
               <option value="">All</option>

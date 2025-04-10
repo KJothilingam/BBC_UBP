@@ -233,3 +233,13 @@
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
+
+.search-input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 2px solid #ccc;
+  font-size: 15px;
+  width: 280px;   /* 👈 Adjust width as needed */
+  max-width: 100%;
+  flex-shrink: 0;
+}

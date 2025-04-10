@@ -217,4 +217,27 @@ downloadPdf(): void {
 
   doc.save('invoice-records.pdf');
 }
+
+
+searchTerm: string = '';  // 🌟 Holds the search input
+
+searchBills() {
+  const term = this.searchTerm.toLowerCase().trim();
+
+  this.filteredBills = this.bills.filter(bill => {
+    return (
+      bill.billId.toString().toLowerCase().includes(term) ||
+      bill.customer_id?.toString().toLowerCase().includes(term) ||
+      bill.meterNumber?.toLowerCase().includes(term)
+    );
+  });
+
+  // Reapply the status filter too, if it's selected
+  if (this.selectedStatus) {
+    this.filteredBills = this.filteredBills.filter(
+      bill => bill.paymentStatus === this.selectedStatus
+    );
+  }
+}
+
 }
