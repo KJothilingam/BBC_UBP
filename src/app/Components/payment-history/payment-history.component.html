@@ -38,26 +38,33 @@
                 <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let payment of payments">
-                <td>{{ payment.transactionId }}</td>  <!-- Updated -->
+            <tbody *ngIf="filteredPayments.length > 0; else noPayments">
+              <tr *ngFor="let payment of filteredPayments">
+                <td>{{ payment.transactionId }}</td>
                 <td>{{ payment.meterNumber }}</td>
                 <td>{{ payment.unitConsumed }}</td>
                 <td>{{ payment.billingMonth }}</td>
                 <td>{{ payment.dueDateFormatted }}</td>
                 <td class="total-amount">₹{{ payment.totalBillAmount | number: '1.2-2' }}</td>
-                <!-- <td>₹{{ payment.amountPaid | number: '1.2-2' }}</td> -->
                 <td class="discount">₹{{ payment.discountApplied | number: '1.2-2' }}</td>
                 <td class="final-amount">₹{{ payment.finalAmountPaid | number: '1.2-2' }}</td>
                 <td>{{ payment.paymentMethod }}</td>
                 <td>{{ payment.paymentDateFormatted }}</td>
                 <td>
-                    <button class="pdf-btn" (click)="generatePDF(payment.transactionId)">
-                      <i class="bi bi-file-earmark-pdf-fill"></i>
-                    </button>
-                  </td>
-                </tr>
+                  <button class="pdf-btn" (click)="generatePDF(payment.transactionId)">
+                    <i class="bi bi-file-earmark-pdf-fill"></i>
+                  </button>
+                </td>
+              </tr>
             </tbody>
+            <!-- 🔸 Template shown when no payments -->
+            <ng-template #noPayments>
+              <tr>
+                <td colspan="11" style="text-align:center; color: #888; font-weight: bold; padding: 20px;">
+                  No payment found
+                </td>
+              </tr>
+            </ng-template>
             </table>
         </div>
 

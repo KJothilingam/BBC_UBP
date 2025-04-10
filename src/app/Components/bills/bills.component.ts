@@ -65,6 +65,8 @@ export class BillsComponent implements OnInit {
         return 'status-paid';
       case 'OVERDUE':
         return 'status-overdue';
+      case 'EXCEPTION':
+        return 'status-exception';
       default:
         return '';
     }

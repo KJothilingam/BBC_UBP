@@ -63,9 +63,9 @@
               <th>Action</th> <!-- ✅ New Action Column -->
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngIf="filteredBills.length > 0; else noBills">
             <tr *ngFor="let bill of filteredBills">
-              <td>{{ bill.billId }}</td> <!-- ✅ Added -->
+              <td>{{ bill.billId }}</td>
               <td>{{ bill.customer.customerId }}</td>
               <td>{{ bill.customer.meterNumber }}</td>
               <td>{{ bill.invoiceId }}</td>
@@ -75,18 +75,21 @@
                 {{ bill.paymentStatus }}
               </td>
               <td>Rs. {{ bill.totalBillAmount }}</td>
-
-              <!-- ✅ PDF Button -->
               <td>
-                <!-- <button class="pdf-btn" (click)="generatePDF(bill)">
-                  📄 Download
-                </button> -->
                 <button (click)="generatePDF(bill)" class="pdf-btn">
-                  <i class="bi bi-filetype-pdf"></i> 
-              </button>
+                  <i class="bi bi-filetype-pdf"></i>
+                </button>
               </td>
             </tr>
           </tbody>
+          <!-- 🔻 Displayed if no bills found -->
+      <ng-template #noBills>
+        <tr>
+          <td colspan="9" style="text-align:center; padding: 20px; color: #888; font-weight: 600;">
+            No bill found
+          </td>
+        </tr>
+      </ng-template>
         </table>
     </div>
 

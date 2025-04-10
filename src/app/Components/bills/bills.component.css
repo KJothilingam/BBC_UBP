@@ -243,3 +243,8 @@
   max-width: 100%;
   flex-shrink: 0;
 }
+
+.status-exception{
+  color: orange;
+  font-weight: bold;
+}
