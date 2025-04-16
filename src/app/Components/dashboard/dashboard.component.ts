@@ -19,9 +19,9 @@ Chart.register(...registerables);
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  creditCardBalance = 0;
-  debitCardBalance = 0;
-  upiBalance = 0;
+  // creditCardBalance = 0;
+  // debitCardBalance = 0;
+  // upiBalance = 0;
   walletBalance = 0;
   customerId!: number;
 
@@ -91,9 +91,9 @@ export class DashboardComponent {
   fetchWalletBalance() {
     this.walletService.getWalletBalance(this.customerId).subscribe(
       (wallet) => {
-        this.creditCardBalance = wallet.creditCardBalance;
-        this.debitCardBalance = wallet.debitCardBalance;
-        this.upiBalance = wallet.upiBalance;
+        // this.creditCardBalance = wallet.creditCardBalance;
+        // this.debitCardBalance = wallet.debitCardBalance;
+        // this.upiBalance = wallet.upiBalance;
         this.walletBalance = wallet.walletBalance;
       },
       (error) => console.error('Error fetching wallet balance:', error)

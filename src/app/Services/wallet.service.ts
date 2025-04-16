@@ -23,4 +23,7 @@ export class WalletService {
   addMoney(customerId: number, amount: number, paymentMethod: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/add-money`, { customerId, amount, paymentMethod });
   }
+  getPasskey(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/passkey`);
+  }
 }
