@@ -2,13 +2,13 @@
 
 <div class="container">
 
-    <!-- ✅ Pay Bills Button -->
+    <!--  Pay Bills Button -->
     <button type="button" class="btn btn-primary top-right-btn" 
             [routerLink]="['/payment']" routerLinkActive="router-link-active">
         Pay Bills 
     </button>
 
-    <!-- ✅ Header -->
+    <!--  Header -->
     <div class="header">
       <div>
         <!-- <p class="breadcrumb">Bill / </p> -->
@@ -17,14 +17,14 @@
       </div>
     </div>
 
-    <!-- ✅ Bill Container -->
+    <!--  Bill Container -->
     <div class="bill-container">
         <h3 class="bill-title">Invoice Details - {{ customerName }} (ID: {{ customerId }})</h3>
 
-        <!-- ✅ Filter Dropdown -->
+        <!--  Filter Dropdown -->
        
         <div class="filter-container">
-           <!-- 🔍 Search Input -->
+           <!--  Search Input -->
            <input 
            type="text" 
            placeholder="Search by Bill ID, Customer ID or Meter Number"
@@ -48,7 +48,7 @@
           </button>
           </div>
 
-        <!-- ✅ Invoice Table -->
+        <!--  Invoice Table -->
         <table class="bill-table">
           <thead>
             <tr>
@@ -60,7 +60,7 @@
               <th>Due Date</th>
               <th>Status</th>
               <th>Amount</th>
-              <th>Action</th> <!-- ✅ New Action Column -->
+              <th>Action</th> <!--  New Action Column -->
             </tr>
           </thead>
           <tbody *ngIf="filteredBills.length > 0; else noBills">
@@ -82,7 +82,7 @@
               </td>
             </tr>
           </tbody>
-          <!-- 🔻 Displayed if no bills found -->
+          <!--  Displayed if no bills found -->
       <ng-template #noBills>
         <tr>
           <td colspan="9" style="text-align:center; padding: 20px; color: #888; font-weight: 600;">
