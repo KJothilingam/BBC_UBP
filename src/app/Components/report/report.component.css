@@ -1,6 +1,7 @@
 .report-container {
-    max-width: 850px;
-    margin: 2rem auto;
+    max-width: 1100px;
+    margin-left: 35vh;
+    /* margin: 2rem auto; */
     padding: 2rem;
     background-color: #fff;
     border-radius: 12px;
@@ -64,7 +65,8 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
   
-  .table {
+  
+  /* .table {
     border-radius: 10px;
     overflow: hidden;
     font-size: 15px;
@@ -78,8 +80,25 @@
   .table td,
   .table th {
     vertical-align: middle;
+  } */
+  
+
+  .table {
+    width: 100%;
+    table-layout: fixed; /* Ensures columns fit within container */
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 15px;
+    word-wrap: break-word; /* Allows long text to wrap */
   }
   
+  .table th,
+  .table td {
+    word-wrap: break-word;
+    white-space: normal; /* Prevents forcing horizontal scroll */
+    padding: 8px;
+  }
+
   span {
     padding: 4px 10px;
     border-radius: 12px;
