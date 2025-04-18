@@ -78,7 +78,7 @@ export class PaymentComponent {
     this.showModal = false;
   }
 
-// 🔹 Fetch unpaid bills
+//  Fetch unpaid bills
   fetchBills() {
     const meterNumber = this.paymentForm.get('meterNumber')?.value?.trim();
 
@@ -110,7 +110,7 @@ export class PaymentComponent {
 
 
 
-  // 🔹 Auto-fill bill details when a bill is selected
+  //  Auto-fill bill details when a bill is selected
   onBillSelect() {
     const selectedBillId = parseInt(this.paymentForm.get('billId')?.value, 10);
     const selectedBill = this.bills.find(bill => bill.billId === selectedBillId);
@@ -235,7 +235,7 @@ export class PaymentComponent {
     const tableWidth = pageWidth - 40;
     const rowHeight = 8;
   
-    // 🔹 **Customer Details (with Icon)**
+    //  **Customer Details (with Icon)**
     const customerIcon = 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png'; 
     doc.addImage(customerIcon, 'PNG', tableX, y - 2, 6, 6);
     doc.setFontSize(14);
@@ -259,7 +259,7 @@ export class PaymentComponent {
   
     y += 10; 
   
-    // 🔹 **Invoice & Payment Details (with Icon)**
+    // **Invoice & Payment Details (with Icon)**
     const invoiceIcon = 'https://cdn-icons-png.flaticon.com/512/166/166258.png'; // Invoice icon
     doc.addImage(invoiceIcon, 'PNG', tableX, y - 2, 6, 6);
     doc.setFontSize(14);
@@ -269,7 +269,7 @@ export class PaymentComponent {
     doc.setFontSize(12);
     y += 8;
   
-    // ✅ Corrected Amount Paid Calculation
+    //  Corrected Amount Paid Calculation
     const calculatedAmountPaid = (this.paymentData.totalBillAmount ?? 0) - (this.paymentData.discountApplied ?? 0);
   
     const invoiceDetails = [
@@ -278,11 +278,7 @@ export class PaymentComponent {
       ["Due Date", this.paymentData.dueDate ? new Date(this.paymentData.dueDate).toLocaleDateString() : "N/A"],
       ["Payment Date", this.paymentData.paymentDate ? new Date(this.paymentData.paymentDate).toLocaleDateString() : "N/A"],
       ["Bill Amount", `Rs.${this.paymentData.totalBillAmount ?? "0.00"}`],
-      // ["Previous Due", `Rs.${this.paymentData.previousDue ?? "0.00"}`],
-      // ["Late Fee", `Rs.${this.paymentData.lateFee ?? "0.00"}`],
       ["Discount", `Rs.${this.paymentData.discountApplied ?? "0.00"}`],
-      // ["GST", `Rs.${this.paymentData.gst ?? "0.00"}`],
-      // ["Net Payable", `Rs.${this.paymentData.netPayable ?? "0.00"}`],
       ["Amount Paid", `Rs.${calculatedAmountPaid.toFixed(2)}`], 
       ["Payment Method", this.paymentData.paymentMethod ?? "N/A"],
       ["Transaction ID", this.paymentData.transactionId ?? "N/A"],
@@ -296,7 +292,7 @@ export class PaymentComponent {
   
     y += 10; 
   
-    // 🔹 **Generate QR Code**
+    // **Generate QR Code**
     const qrData = `Invoice ID: ${this.paymentData.invoiceId}
   Customer: ${this.paymentData.customerName}
   Meter No: ${this.paymentData.meterNumber}
@@ -308,7 +304,7 @@ export class PaymentComponent {
         doc.text("Scan for Details", pageWidth - 60, y + 45);
       }
   
-      // 🔹 **Footer**
+      //  **Footer**
       doc.setFillColor(0, 51, 153);
       doc.rect(0, doc.internal.pageSize.getHeight() - 20, pageWidth, 20, 'F');
       doc.setTextColor(255, 255, 255);
@@ -316,12 +312,12 @@ export class PaymentComponent {
       doc.text("For any queries, contact: support@electricity.com", pageWidth / 2, doc.internal.pageSize.getHeight() - 12, { align: "center" });
       doc.text("Thank you for your payment!", pageWidth / 2, doc.internal.pageSize.getHeight() - 5, { align: "center" });
   
-      // 🔹 **Save PDF**
+      //  **Save PDF**
       doc.save(`receipt_${this.paymentData.invoiceId ?? "unknown"}.pdf`);
     });
   }
   
-  // 🔹 Toastr Configuration
+  // Toastr Configuration
   private getToastrConfig() {
     return { timeOut: 3000, positionClass: 'toast-top-right' };
   }

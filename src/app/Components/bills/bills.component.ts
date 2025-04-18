@@ -74,11 +74,11 @@ export class BillsComponent implements OnInit {
 
   generatePDF(bill: any) {
     if (!bill) {
-        console.error("⚠️ Error: Invoice data is missing!");
+        console.error(" Error: Invoice data is missing!");
         return;
     }
 
-    console.log("📝 Generating PDF for:", bill);
+    console.log(" Generating PDF for:", bill);
 
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -182,7 +182,7 @@ export class BillsComponent implements OnInit {
 
    
     img.onerror = () => {
-        console.error("⚠️ Error: Failed to load logo image.");
+        console.error(" Error: Failed to load logo image.");
         doc.save(`Invoice_${bill.invoiceId}.pdf`);
     };
 }
@@ -196,7 +196,6 @@ downloadPdf(): void {
 
   const headers = [['Invoice ID', 'Customer Name', 'Amount (Rs.)', 'Issue Date', 'Payment Status']];
 
-  // Use filteredBills if a filter is applied, otherwise use all bills
   const dataSource = this.selectedStatus ? this.filteredBills : this.bills;
 
   const data = dataSource.map(bill => [
@@ -221,7 +220,7 @@ downloadPdf(): void {
 }
 
 
-searchTerm: string = '';  // 🌟 Holds the search input
+searchTerm: string = '';  //  Holds the search input
 
 searchBills() {
   const term = this.searchTerm.toLowerCase().trim();

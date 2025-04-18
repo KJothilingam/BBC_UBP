@@ -1,6 +1,6 @@
-/* 🔹 Main Container */
+/*  Main Container */
 .container {
-  position: relative; /* ✅ Needed for absolute positioning inside */
+  position: relative; /*  Needed for absolute positioning inside */
   padding: 20px;
   margin-left: 14%;
   background: linear-gradient(to bottom, #eef2f3, #dfe9f3);
@@ -11,9 +11,9 @@
   flex-direction: column;
 }
 
-/* 🔹 Pay Bills Button */
+/*  Pay Bills Button */
 .top-right-btn {
-  position: absolute; /* ✅ Keeps it fixed at top-right */
+  position: absolute; /*  Keeps it fixed at top-right */
   top: 20px;
   right: 20px;
   background: #673ab7;
@@ -26,7 +26,7 @@
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-  z-index: 10; /* ✅ Ensures it's always on top */
+  z-index: 10; /*  Ensures it's always on top */
 }
 
 .top-right-btn:hover {
@@ -34,7 +34,7 @@
   transform: scale(1.05);
 }
 
-/* 🔹 Header */
+/*  Header */
 .header {
   display: flex;
   justify-content: space-between;
@@ -42,7 +42,7 @@
   margin-bottom: 20px;
 }
 
-/* 🔹 Bill Container (Fixes Overlap) */
+/*  Bill Container (Fixes Overlap) */
 .bill-container {
   border: 2px solid #673ab7;
   padding: 25px;
@@ -53,18 +53,18 @@
   background-color: #fff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
-  min-height: 200px;  /* ✅ Allows dynamic expansion */
+  min-height: 200px;  /* Allows dynamic expansion */
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-/* 🔹 Hover Effect */
+/*  Hover Effect */
 .bill-container:hover {
   transform: scale(1.02);
 }
 
-/* 🔹 Bill Title */
+/*  Bill Title */
 .bill-title {
   font-size: 22px;
   font-weight: bold;
@@ -74,16 +74,16 @@
   text-align: center;
 }
 
-/* 🔹 Table */
+/* Table */
 .bill-table {
   width: 100%;
   border-collapse: collapse;
   background: #fafafa;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  table-layout: auto; /* ✅ Adjusts column widths dynamically */
+  table-layout: auto; /*  Adjusts column widths dynamically */
 }
 
-/* 🔹 Table Header */
+/*  Table Header */
 .bill-table th {
   background-color: #673ab7;
   color: white;
@@ -93,23 +93,23 @@
   font-size: 16px;
 }
 
-/* 🔹 Table Cells */
+/*  Table Cells */
 .bill-table th, .bill-table td {
   padding: 14px;
   border-bottom: 1px solid #ddd;
   text-align: center;
   font-size: 16px;
-  white-space: normal; /* ✅ Ensures text wraps */
+  white-space: normal; /*  Ensures text wraps */
   word-wrap: break-word;
 }
 
-/* 🔹 Hover Effect on Rows */
+/*  Hover Effect on Rows */
 .bill-table tr:hover {
   background-color: #f0f0f0;
   transition: background 0.3s ease-in-out;
 }
 
-/* 🔹 Payment Status Colors */
+/*  Payment Status Colors */
 .status-pending {
   color: #d4a100;
   font-weight: bold;
@@ -125,7 +125,7 @@
   font-weight: bold;
 }
 
-/* 🔹 Filter Dropdown */
+/*  Filter Dropdown */
 .filter-container {
   margin-bottom: 15px;
   display: flex;
@@ -149,12 +149,12 @@
   transition: all 0.3s ease;
 }
 
-/* 🔹 Dropdown Hover */
+/*  Dropdown Hover */
 .filter-container select:hover {
   border-color: #673ab7;
 }
 
-/* 🔹 PDF Download Button */
+/*  PDF Download Button */
 .pdf-btn {
   background-color: #ff0000;
   color: white;
@@ -175,7 +175,7 @@
   background-color: #cc0000;
 }
 
-/* 🔹 Mobile Responsive */
+/*  Mobile Responsive */
 @media (max-width: 768px) {
   .container {
     margin-left: 0;
@@ -200,7 +200,7 @@
     font-size: 14px;
   }
 
-  /* ✅ Button Fixed for Mobile */
+  /*  Button Fixed for Mobile */
   .top-right-btn {
     position: fixed;
     top: 10px;
@@ -239,7 +239,7 @@
   border-radius: 6px;
   border: 2px solid #ccc;
   font-size: 15px;
-  width: 280px;   /* 👈 Adjust width as needed */
+  width: 280px;   /*  Adjust width as needed */
   max-width: 100%;
   flex-shrink: 0;
 }

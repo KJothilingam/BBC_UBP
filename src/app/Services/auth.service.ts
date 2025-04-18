@@ -23,9 +23,7 @@ export class AuthService {
       }
     });
   }
-  //  getCustomerId(): number {
-  //   return Number(localStorage.getItem('customerId')) || 0;
-  // }
+ 
   getCustomerId(): number {
     return Number(localStorage.getItem('customerId')) || 0;
   }
@@ -44,7 +42,7 @@ export class AuthService {
   generateOtp(email: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/generate-otp`, { email });
   }
-  
+
   verifyOtp(email: string, otp: string): Observable<any> {
     return new Observable((observer) => {
       this.http.post(`${this.apiUrl}/verify-otp`, { email, otp }).subscribe({
@@ -73,8 +71,8 @@ export class AuthService {
           Authorization: `Bearer ${token}`
         }
       }).subscribe({
-        next: () => console.log("✅ Customer backend logout successful"),
-        error: err => console.error("❌ Customer logout API failed", err)
+        next: () => console.log(" Customer backend logout successful"),
+        error: err => console.error(" Customer logout API failed", err)
       });
     }
   

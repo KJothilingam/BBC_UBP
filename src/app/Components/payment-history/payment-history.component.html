@@ -3,12 +3,7 @@
 <div class="container">
         <div class="payment-container">
             <h2>Payment Details</h2>
-            <!-- <div class="download-all-container">
-              <button class="download-all-btn" (click)="generateAllPDFs()">
-                <i class="bi bi-download"></i> Download 
-              </button>
-            </div> -->
-            
+          
               <div class="filters-container">
                 <div class="filters">
                   <input type="text" placeholder="Search Transaction ID or Meter Number" [(ngModel)]="searchTerm" (input)="filterPayments()" />
@@ -30,7 +25,6 @@
                 <th>Billing Month</th>
                 <th>Due Date</th>
                 <th>Total Bill Amount</th>
-                <!-- <th>Amount Paid</th> -->
                 <th>Discount Applied</th>
                 <th>Final Amount Paid</th>
                 <th>Payment Method</th>
@@ -57,7 +51,7 @@
                 </td>
               </tr>
             </tbody>
-            <!-- 🔸 Template shown when no payments -->
+            <!--  Template shown when no payments -->
             <ng-template #noPayments>
               <tr>
                 <td colspan="11" style="text-align:center; color: #888; font-weight: bold; padding: 20px;">

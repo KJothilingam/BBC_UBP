@@ -22,7 +22,7 @@ export class PaymentHistoryComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    const customerId = this.getCustomerId(); // Get the logged-in user's customer ID
+    const customerId = this.getCustomerId(); 
   
     this.http.get<any[]>(`http://localhost:8080/payment-records/customer?customerId=${customerId}`)
       .subscribe(data => {
@@ -72,9 +72,8 @@ export class PaymentHistoryComponent implements OnInit {
 
   
   private getCustomerId(): number {
-    return Number(localStorage.getItem('customerId')) || 0; // Retrieve customer ID from localStorage
+    return Number(localStorage.getItem('customerId')) || 0; 
   }
-  // payments: any[] = [];
   generatePDF(transactionId: string) {
     const payment = this.payments.find(p => p.transactionId === transactionId);
     if (payment) {
@@ -161,70 +160,6 @@ export class PaymentHistoryComponent implements OnInit {
     doc.save(`Receipt_${payment.transactionId}.pdf`);
   }
 
-  // generateAllPDFs() {
-  //   const doc = new jsPDF();
-  //   const pageWidth = doc.internal.pageSize.getWidth();
-  
-  //   // Smaller title font
-  //   doc.setFontSize(14);
-  //   doc.setTextColor(40, 40, 40);
-  //   doc.text('All Payment Records', pageWidth / 2, 12, { align: 'center' });
-  
-  //   const headers = [
-  //     ['Transaction ID', 'Meter Number', 'Unit Consumed', 'Billing Month', 'Due Date',
-  //      'Total Amount', 'Discount', 'Final Amount', 'Method', 'Date']
-  //   ];
-  
-  //   const data = this.payments.map((p: any) => [
-  //     p.transactionId,
-  //     p.meterNumber,
-  //     p.unitConsumed,
-  //     p.billingMonth,
-  //     this.convertToDate(p.dueDate),
-  //     `Rs.${parseFloat(p.totalBillAmount).toFixed(2)}`,
-  //     `Rs.${parseFloat(p.discountApplied).toFixed(2)}`,
-  //     `Rs.${parseFloat(p.finalAmountPaid).toFixed(2)}`,
-  //     p.paymentMethod,
-  //     this.convertToDate(p.paymentDate)
-  //   ]);
-  
-  //   autoTable(doc, {
-  //     head: headers,
-  //     body: data,
-  //     startY: 18,
-  //     theme: 'striped',
-  //     headStyles: {
-  //       fillColor: [22, 160, 133],
-  //       textColor: 255,
-  //       fontSize: 7
-  //     },
-  //     bodyStyles: {
-  //       textColor: 50,
-  //       fontSize: 6
-  //     },
-  //     styles: {
-  //       fontSize: 6,
-  //       cellPadding: 1,
-  //       halign: 'center',
-  //       overflow: 'linebreak'
-  //     },
-  //     columnStyles: {
-  //       0: { cellWidth: 'auto' },
-  //       1: { cellWidth: 'auto' },
-  //       2: { cellWidth: 'auto' },
-  //       3: { cellWidth: 'auto' },
-  //       4: { cellWidth: 'auto' },
-  //       5: { cellWidth: 'auto' },
-  //       6: { cellWidth: 'auto' },
-  //       7: { cellWidth: 'auto' },
-  //       8: { cellWidth: 'auto' },
-  //       9: { cellWidth: 'auto' },
-  //     },
-  //     margin: { top: 15 }
-  //   });
-  
-  //   doc.save('All_Payments.pdf');
-  // }
   generateAllPDFs() {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -239,7 +174,7 @@ export class PaymentHistoryComponent implements OnInit {
        'Total Amount', 'Discount', 'Final Amount', 'Method', 'Date']
     ];
   
-    // 🔹 Use filteredPayments here
+    //  Use filteredPayments here
     const data = this.filteredPayments.map((p: any) => [
       p.transactionId,
       p.meterNumber,

@@ -105,9 +105,7 @@ export class ReportComponent implements OnInit {
     }
   }
 
-  // isBillIdRequired(): boolean {
-  //   return this.selectedRequestType === 'READING_FAULT' || this.selectedRequestType === 'EXTEND_DUE_DATE';
-  // }
+ 
   isBillIdRequired(): boolean {
     return this.selectedRequestType === 'READING_FAULT' ||
            this.selectedRequestType === 'EXTEND_DUE_DATE' ||
