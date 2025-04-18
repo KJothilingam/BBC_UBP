@@ -1,11 +1,10 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { routes } from './app.routes';
-
-// ✅ Import required Angular Material Modules
+import { jwtInterceptor } from './interceptors/jwt.interceptor'; // <-- adjust the path accordingly
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -14,18 +13,28 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 
+// import {
+//   MatRadioModule,
+//   MatInputModule,
+//   MatCardModule,
+//   MatFormFieldModule,
+//   MatSelectModule,
+//   MatOptionModule,
+//   MatButtonModule
+// } from '@angular/material';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(
-      MatRadioModule, 
-      MatInputModule, 
-      MatCardModule, 
-      MatFormFieldModule, 
-      MatSelectModule, 
-      MatOptionModule, 
-      MatButtonModule 
+      MatRadioModule,
+      MatInputModule,
+      MatCardModule,
+      MatFormFieldModule,
+      MatSelectModule,
+      MatOptionModule,
+      MatButtonModule
     ),
     importProvidersFrom(ToastrModule.forRoot({
       timeOut: 1000,
@@ -36,7 +45,10 @@ export const appConfig: ApplicationConfig = {
       autoDismiss: true,
       newestOnTop: true,
     })),
-    provideHttpClient(withFetch()),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([jwtInterceptor]) // 👈 Register the JWT interceptor
+    ),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes)
   ]

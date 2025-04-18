@@ -3,9 +3,15 @@ import { AuthGuard } from './guards/auth.guard';
 export const routes: Routes = [
 
     {
-        path:'',
-        loadComponent :()=>import('./Components/login/login.component').then((c)=> c.LoginComponent),
-    },
+        path: '',
+        loadComponent: () =>
+          import('./Components/startup-redirect/startup-redirect.component').then((c) => c.StartupRedirectComponent),
+      },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./Components/login/login.component').then((c) => c.LoginComponent),
+      },
     {
         path:'dashboard',
         loadComponent :()=>import('./Components/dashboard/dashboard.component').then((c)=> c.DashboardComponent),
