@@ -1,6 +1,1 @@
-export enum RequestStatus {
-    COMPLETED = 'Completed',
-    IN_PROCESS = 'In Process',
-    DECLINED = 'Declined'
-  }
-  
+export type RequestStatus = 'COMPLETED' | 'IN_PROCESS' | 'SUCCESS' | 'DECLINED';
