@@ -21,8 +21,13 @@
       </div>
 
       <div class="col-md-6" *ngIf="isBillIdRequired()">
-        <label for="billId" class="form-label">Bill ID:</label>
-        <input type="number" [(ngModel)]="newRequest.billId" name="billId" class="form-control" required />
+        <label for="billId" class="form-label">Select Bill:</label>
+        <select id="billId" [(ngModel)]="newRequest.billId" name="billId" class="form-select" required>
+          <option value="" disabled selected>Select a pending bill</option>
+          <option *ngFor="let bill of pendingBills" [value]="bill.billId">
+            Bill ID: {{ bill.billId }} | Status: {{ bill.paymentStatus}} | Due: {{ bill.dueDate | date:'dd-MM-yyyy' }}
+          </option>
+        </select>
       </div>
 
       <div class="col-md-6" *ngIf="isNewValueRequired()">
